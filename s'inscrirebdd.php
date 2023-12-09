@@ -1,87 +1,63 @@
 <?php
+// Démarrer la session
+session_start();
+
 // Informations de connexion à la base de données
 $servername = "localhost";
 $username = "user1";
 $password = "user1";
 $dbname = "ShoppingPlanet";
 
-// Initialisation du tableau d'erreurs
-$errors = array(
-    "nom_utilisateur" => "",
-    "numero_telephone" => "",
-    "adresse" => "",
-    "email" => "",
-    "motDePasse" => "",
-    "confirmMotDePasse" => ""
-);
+// Connexion à la base de données
+$connexion = new mysqli($servername, $username, $password, $dbname);
 
-// Vérification si le formulaire d'inscription est soumis
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["s'inscrire"])) {
-    // Validation des données (ajoutez vos propres règles de validation)
-    $nomUtilisateur = $_POST['nom_utilisateur'];
-    $numeroTelephone = $_POST['numero_telephone'];
-    $adresse = $_POST['adresse'];
-    $email = $_POST['email'];
-    $motDePasse = $_POST['motDePasse'];
-    $confirmMotDePasse = $_POST['confirmMotDePasse'];
+// Vérification de la connexion
+if ($connexion->connect_error) {
+    die("La connexion à la base de données a échoué : " . $connexion->connect_error);
+}
 
-    // Ajoutez des vérifications pour chaque champ du formulaire
-    if (empty($nomUtilisateur)) {
-        $errors["nom_utilisateur"] = "Veuillez entrer votre nom d'utilisateur.";
-    }
+// Vérifier si le formulaire a été soumis
+if (isset($_POST['submit'])) {
+    // Échapper les entrées pour éviter les injections SQL
+    $email = mysqli_real_escape_string($connexion, $_POST['email']);
+    $password = mysqli_real_escape_string($connexion, $_POST['password']);
+    $usertype = $_POST['usertype'];
 
-    if (empty($numeroTelephone)) {
-        $errors["numero_telephone"] = "Veuillez entrer votre numéro de téléphone.";
-    }
+    // Requête SQL pour récupérer l'utilisateur en fonction de l'email
+    $result = mysqli_query($connexion, "SELECT * FROM users WHERE Email='$email'") or die(mysqli_error($connexion));
+    $row = mysqli_fetch_assoc($result);
 
-    if (empty($adresse)) {
-        $errors["adresse"] = "Veuillez entrer votre adresse.";
-    }
+    if ($row) {
+        $hashpass = $row['Password'];
 
-    if (empty($email)) {
-        $errors["email"] = "Veuillez entrer votre adresse e-mail.";
-    }
+        // Vérifier le mot de passe avec la fonction password_verify
+        if (password_verify($password, $hashpass)) {
+            $_SESSION['valid'] = $row['Email'];
+            $_SESSION['username'] = $row['Username'];
+            $_SESSION['id'] = $row['Id'];
+            $_SESSION['usertype'] = $usertype;
 
-    if (empty($motDePasse)) {
-        $errors["motDePasse"] = "Veuillez entrer votre mot de passe.";
-    }
-
-    if ($motDePasse !== $confirmMotDePasse) {
-        $errors["confirmMotDePasse"] = "Les mots de passe ne correspondent pas.";
-    }
-
-    if (empty(array_filter($errors))) {
-        // Connexion à la base de données
-        $connexion = new mysqli($servername, $username, $password, $dbname);
-
-        // Vérification de la connexion
-        if ($connexion->connect_error) {
-            die("La connexion à la base de données a échoué : " . $connexion->connect_error);
-        }
-
-        // Utilisation de déclarations préparées pour éviter les injections SQL
-        $stmt = $connexion->prepare("INSERT INTO utilisateur (nom_utilisateur, adresse, numero_telephone, email, motDePasse) VALUES (?, ?, ?, ?, ?)");
-
-        // Vérification de la préparation de la requête
-        if ($stmt === false) {
-            die("Erreur de préparation de la requête : " . $connexion->error);
-        }
-
-        $stmt->bind_param("ssiss", $nomUtilisateur, $adresse, $numeroTelephone, $email, $motDePasse);
-
-        if ($stmt->execute()) {
-            // Inscription réussie
-            echo json_encode(array("success" => true, "message" => "Inscription réussie. Bienvenue !"));
+            // Rediriger en fonction du type d'utilisateur
+            if ($_SESSION['usertype'] === 'admin') {
+                header("Location: desk.php");
+            } else {
+                header("Location: home.php");
+            }
         } else {
-            // Erreur lors de l'inscription
-            echo json_encode(array("success" => false, "message" => "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."));
+            // Afficher un message d'erreur si le mot de passe est incorrect
+            echo "<div class='alert alert-danger'>
+                    <p>Identifiant ou mot de passe incorrect</p>
+                  </div>";
+            echo "<a href='login.php' class='btn btn-primary'>Retour</a>";
         }
-
-        $stmt->close();
-        $connexion->close();
     } else {
-        // Erreurs de validation
-        echo json_encode(array("success" => false, "errors" => $errors));
+        // Afficher un message d'erreur si l'utilisateur n'est pas trouvé
+        echo "<div class='alert alert-danger'>
+                <p>Identifiant ou mot de passe incorrect</p>
+              </div>";
+        echo "<a href='login.php' class='btn btn-primary'>Retour</a>";
     }
 }
 ?>
+
+<!-- Le reste du code HTML... -->

@@ -42,26 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["connexion"])) {
     // Vérification du mot de passe
     if ($utilisateur && $motDePasse == $utilisateur['motDePasse']) {
         // Authentification réussie
-
-        // Ajout dans la table comptefinal_utilisateur
-        $stmtInsert = $connexion->prepare("INSERT INTO comptefinal_utilisateur (email, motDePasse) VALUES (?, ?)");
-
-        // Vérification de la préparation de la requête
-        if ($stmtInsert === false) {
-            die("Erreur de préparation de la requête : " . $connexion->error);
-        }
-
-        $stmtInsert->bind_param("ss", $email, $motDePasse);
-
-        if ($stmtInsert->execute()) {
-            // Insertion dans la table comptefinal_utilisateur réussie
-            echo json_encode(array("success" => true));
-        } else {
-            // Erreur lors de l'insertion dans la table comptefinal_utilisateur
-            die(json_encode(array("success" => false, "message" => "Erreur lors de l'insertion dans la table comptefinal_utilisateur : " . $stmtInsert->error)));
-        }
-
-        $stmtInsert->close();
+        echo json_encode(array("success" => false, "message" => "bienvenu"));
+       
     } else {
         // Mot de passe incorrect ou utilisateur non trouvé
         echo json_encode(array("success" => false, "message" => "Adresse e-mail ou mot de passe incorrect."));
