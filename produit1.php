@@ -165,7 +165,7 @@
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
-            $currentUserId = 1; // Exemple d'ID utilisateur - à adapter
+            $currentUserId = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
             $productId = $_POST['product_id'];
 
             // Vérifier si le produit existe déjà dans le panier de l'utilisateur actuel
@@ -223,7 +223,7 @@
 
         // obtenir_nombre_produits_panier.php
 
-        $currentUserId = 1; // Exemple d'ID utilisateur - à adapter
+        $currentUserId = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
 
         $query = "SELECT SUM(quantity) AS total_items FROM panier WHERE user_id = $currentUserId";
         $result = mysqli_query($conn, $query);

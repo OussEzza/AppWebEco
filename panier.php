@@ -17,7 +17,7 @@
         // Suppression d'un produit du panier
         if (isset($_POST['remove_btn'])) {
             $productId = $_POST['remove_product'];
-            $currentUserId = 1; // Exemple d'ID utilisateur - à adapter
+            $currentUserId = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
 
             $query = "DELETE FROM panier WHERE user_id = $currentUserId AND product_id = $productId";
             $result = mysqli_query($conn, $query);
@@ -35,9 +35,9 @@
         $error = "";
         if (isset($_POST['new_quantity_plus'])) {
             $productId = $_POST['update_quantity'];
-
+            $currentUserId1 = $_SESSION['user_id'];
             // Récupérer la quantité actuelle du produit dans le panier
-            $currentQuantityQuery = "SELECT quantity FROM panier WHERE product_id = $productId";
+            $currentQuantityQuery = "SELECT SUM(quantity) FROM panier WHERE product_id = $productId";
             $currentQuantityResult = mysqli_query($conn, $currentQuantityQuery);
             $currentQuantityRow = mysqli_fetch_assoc($currentQuantityResult);
             $currentQuantity = $currentQuantityRow['quantity'];
@@ -51,7 +51,7 @@
             // Vérifier si la quantité totale ne dépasse pas la quantité disponible
             if ($currentQuantity < $availableQuantity) {
                 // Mettre à jour la quantité dans le panier en ajoutant 1
-                $updateQuery = "UPDATE panier SET quantity = quantity + 1 WHERE product_id = $productId";
+                $updateQuery = "UPDATE panier SET quantity = quantity + 1 WHERE product_id = $productId and user_id = $currentUserId1";
                 $updateResult = mysqli_query($conn, $updateQuery);
 
                 if ($updateResult) {
@@ -70,6 +70,7 @@
         $error1 = "";
         if (isset($_POST['new_quantity_less'])) {
             $productId = $_POST['update_quantity'];
+            $currentUserId2 = $_SESSION['user_id'];
 
             // Récupérer la quantité actuelle du produit dans le panier
             $currentQuantityQuery = "SELECT quantity FROM panier WHERE product_id = $productId";
@@ -80,7 +81,7 @@
             // Vérifier si la quantité dans le panier est supérieure à zéro
             if ($currentQuantity > 1) {
                 // Mettre à jour la quantité dans le panier en soustrayant 1
-                $updateQuery = "UPDATE panier SET quantity = quantity - 1 WHERE product_id = $productId";
+                $updateQuery = "UPDATE panier SET quantity = quantity - 1 WHERE product_id = $productId and user_id = $currentUserId2";
                 $updateResult = mysqli_query($conn, $updateQuery);
 
                 if ($updateResult) {
@@ -102,17 +103,18 @@
         echo '<script>
             setTimeout(function(){
                 document.querySelector(".error-message").style.display = "none";
-            }, 3000);
+            }, 3000); // Disparaît après 3 secondes (3000 ms)
           </script>';
     }
 
 
 
-    $currentUserId = 1; // Exemple d'ID utilisateur - à adapter
+    $currentUserId3 = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
     $query = "SELECT products.id, products.product_name, products.price, products.product_image, panier.quantity
               FROM products
               JOIN panier ON products.id = panier.product_id
-              WHERE panier.user_id = $currentUserId";
+              JOIN users ON users.id = panier.user_id
+              WHERE panier.user_id = $currentUserId3";
 
     $result = mysqli_query($conn, $query);
 
