@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Récupérer l'email depuis le formulaire
         $email = $_POST['email'];
-
+ 
         // Insérer le code dans la base de données avec l'email associé
         $sql = "INSERT INTO commandes (email, code) VALUES ('$email', '$code')";
         if ($conn->query($sql) === TRUE) {
