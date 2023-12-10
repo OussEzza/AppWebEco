@@ -7,8 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="stye eco.css" />
         <link rel="stylesheet" href="product.css">
-        <!-- <link rel="stylesheet" href="style.css"> -->
-        <!-- <link rel="stylesheet" href="stylespanier.css"> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <title>ShoppingPlanet</title>
     </head>
@@ -61,40 +59,6 @@
         </header>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
-
-
-
-        <?php
-        require_once('connection.php');
-        session_start(); // Démarrer la session si ce n'est pas déjà fait
-
-        $currentUserId = 1; // Exemple d'ID utilisateur - à adapter
-
-        // Utilisation de la variable $currentUserId dans la requête pour filtrer par ID d'utilisateur
-        $query = "SELECT * FROM users";
-        $result = mysqli_query($conn, $query);
-
-        if ($result) {
-            $rowUser = mysqli_fetch_assoc($result);
-
-            // Stocker les informations de l'utilisateur dans la session
-            $_SESSION['user_id'] = $rowUser['Id'];
-            // ... Ajoutez d'autres données d'utilisateur si nécessaire dans la session
-        } else {
-            // Gérer les erreurs ou afficher un message approprié si la requête échoue
-            echo "Erreur lors de la récupération des informations de l'utilisateur.";
-        }
-        ?>
-
-
-
-
-
-
-
-
-
-
 
 
 

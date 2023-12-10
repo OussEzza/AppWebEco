@@ -17,7 +17,7 @@
         // Suppression d'un produit du panier
         if (isset($_POST['remove_btn'])) {
             $productId = $_POST['remove_product'];
-            $currentUserId = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
+            $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
 
             $query = "DELETE FROM panier WHERE user_id = $currentUserId AND product_id = $productId";
             $result = mysqli_query($conn, $query);
@@ -35,12 +35,13 @@
         $error = "";
         if (isset($_POST['new_quantity_plus'])) {
             $productId = $_POST['update_quantity'];
-            $currentUserId1 = $_SESSION['user_id'];
+            $currentUserId1 = $_SESSION['id'];
             // Récupérer la quantité actuelle du produit dans le panier
-            $currentQuantityQuery = "SELECT SUM(quantity) FROM panier WHERE product_id = $productId";
+            $currentQuantityQuery = "SELECT SUM(quantity) AS total_quantity FROM panier WHERE product_id = $productId";
             $currentQuantityResult = mysqli_query($conn, $currentQuantityQuery);
             $currentQuantityRow = mysqli_fetch_assoc($currentQuantityResult);
-            $currentQuantity = $currentQuantityRow['quantity'];
+            $currentQuantity = $currentQuantityRow['total_quantity']; // Utiliser le nom de l'alias défini dans la requête SQL
+
 
             // Récupérer la quantité disponible dans le stock pour ce produit
             $availableQuantityQuery = "SELECT quantitate FROM products WHERE id = $productId";
@@ -70,13 +71,14 @@
         $error1 = "";
         if (isset($_POST['new_quantity_less'])) {
             $productId = $_POST['update_quantity'];
-            $currentUserId2 = $_SESSION['user_id'];
+            $currentUserId2 = $_SESSION['id'];
 
             // Récupérer la quantité actuelle du produit dans le panier
-            $currentQuantityQuery = "SELECT quantity FROM panier WHERE product_id = $productId";
+            $currentQuantityQuery = "SELECT quantity AS total_quantity FROM panier WHERE product_id = $productId and user_id = $currentUserId2";
             $currentQuantityResult = mysqli_query($conn, $currentQuantityQuery);
             $currentQuantityRow = mysqli_fetch_assoc($currentQuantityResult);
-            $currentQuantity = $currentQuantityRow['quantity'];
+            $currentQuantity = $currentQuantityRow['total_quantity']; // Utiliser le nom de l'alias défini dans la requête SQL
+
 
             // Vérifier si la quantité dans le panier est supérieure à zéro
             if ($currentQuantity > 1) {
@@ -108,19 +110,18 @@
     }
 
 
-
-    $currentUserId3 = $_SESSION['user_id']; // Exemple d'ID utilisateur - à adapter
+    // Récupération des produits dans le panier pour l'utilisateur actuel
+    $currentUserId = $_SESSION['id'];
     $query = "SELECT products.id, products.product_name, products.price, products.product_image, panier.quantity
-              FROM products
-              JOIN panier ON products.id = panier.product_id
-              JOIN users ON users.id = panier.user_id
-              WHERE panier.user_id = $currentUserId3";
-
+              FROM products, panier
+              WHERE products.id = panier.product_id
+              AND panier.user_id = $currentUserId";
     $result = mysqli_query($conn, $query);
 
     $totalAmount = 0;
 
     if ($result && mysqli_num_rows($result) > 0) {
+        // Affichage des détails des produits dans le panier
         echo '<table class="table1">';
         echo '<tr>';
         echo '<th>Numéro du produit</th>';
@@ -138,12 +139,7 @@
             echo '<td>' . $productNumber . '</td>';
             echo '<td><img class="imgpanier" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
             echo '<td>' . $row['product_name'] . '</td>';
-            // Récupérer la quantité disponible du produit depuis la base de données
-            $productId = $row['id'];
-            $queryProduct = "SELECT quantitate FROM products WHERE id = $productId";
-            $resultProduct = mysqli_query($conn, $queryProduct);
-            $rowProduct = mysqli_fetch_assoc($resultProduct);
-            $availableQuantity = $rowProduct['quantitate'];
+
             echo '<td>';
             echo '<form method="post" action="panier.php">';
             echo '<input type="hidden" name="update_quantity" value="' . $row['id'] . '">';
@@ -162,10 +158,12 @@
             echo '</button>';
             echo '</form>';
             echo '</td>';
+
+
             echo '<td>' . $row['price'] * $row['quantity'] . ' $</td>';
             echo '<td>';
             echo '<form method="post" action="panier.php">';
-            echo '<input  type="hidden" name="remove_product" value="' . $row['id'] . '">';
+            echo '<input type="hidden" name="remove_product" value="' . $row['id'] . '">';
             echo '<input class="btnremove" type="submit" name="remove_btn" value="X">';
             echo '</form>';
             echo '</td>';
@@ -205,7 +203,6 @@
         echo '</div>';
     }
     echo '<button class="btnback"><a href="produit1.php">Retour aux produits</a></button>';
-
 
 
 
