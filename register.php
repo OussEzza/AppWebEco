@@ -11,7 +11,7 @@
             max-width: 400px;
             margin: 0 auto;
         }
-         .gradient-title {
+        .gradient-title {
             background-image: linear-gradient(to right,#FA8BFF,#2BD2FF,#2BFF88);
             -webkit-background-clip: text;
             background-clip: text;
@@ -23,40 +23,51 @@
     <div class="container">
         <div class="card p-4 custom-form">
             <div class="card-body">
-            <h5 class="card-title text-left mb-4">Help Desk</h5>
-                <?php 
-                  session_start();
-                  include("connection.php");
-                  if(isset($_POST['submit'])){
-                      $username = $_POST['username'];
-                      $email = $_POST['email'];
-                      $password = password_hash($_POST['password'],PASSWORD_DEFAULT) ;
-          
-                      // Vérification de l'adresse e-mail unique
-                      $verify_query = mysqli_query($conn,"SELECT Email FROM users WHERE Email='$email'");
-          
-                      if(mysqli_num_rows($verify_query) != 0){
-                          echo "<div class='alert alert-danger'>
+                <?php
+                session_start();
+                include("connection.php");
+
+                if (isset($_POST['submit'])) {
+                    $nom_utilisateur = $_POST['username'];
+                    $email = $_POST['email'];
+                    $motDePasse = $_POST['password'];
+                    $adresse = $_POST['adresse'];
+                    $numero_telephone = $_POST['numero_telephone'];
+
+                    $verify_query = mysqli_query($conn, "SELECT Email FROM users WHERE Email='$email'");
+
+                    if (mysqli_num_rows($verify_query) != 0) {
+                        echo "<div class='alert alert-danger'>
                                     <p>Cet e-mail est déjà utilisé, veuillez en choisir un autre !</p>
                                 </div>";
-                      } else {
-                          mysqli_query($conn,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$password')") or die("Erreur");
-          
-                          echo "<div class='alert alert-success'>
+                    } else {
+                        mysqli_query($conn, "INSERT INTO users(nom_utilisateur,numero_telephone,adresse,email,motDePasse) 
+                          VALUES('$nom_utilisateur','$numero_telephone','$adresse','$email','$motDePasse')") or die("Erreur");
+
+                        echo "<div class='alert alert-success'>
                                     <p>Inscription réussie !</p>
                                 </div>";
-                                
-                             echo"  <div class='text-center'>
+
+                        echo"  <div class='text-center'>
                                 <a href='login.php' class='btn btn-primary'>Se connecter maintenant</a>
                             </div>";
-                      }
-                  } else {} 
+                    }
+                }
                 ?>
-              <h1 class="card-title text-center mb-4 gradient-title">INSCRIPTION</h1>
+
+                <h1 class="card-title text-center mb-4 gradient-title">INSCRIPTION</h1>
                 <form action="" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Nom d'utilisateur</label>
                         <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <input type="text" name="adresse" id="adresse" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero_telephone" class="form-label">Numéro de téléphone</label>
+                        <input type="text" name="numero_telephone" id="numero_telephone" class="form-control" autocomplete="off" required>
                     </div>
 
                     <div class="mb-3">
@@ -72,13 +83,4 @@
                     <div class="mb-3 text-center">
                         <button type="submit" class="btn btn-primary btn-lg" name="submit">S'inscrire</button>
                     </div>
-                    <div class="text-center">
-                        Deja un compte? <a href="login.php">Connectez-vous</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+                   

@@ -51,7 +51,7 @@
                         <a href="#"><i class="fas fa-info-circle"></i> À Propos</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                        <a href="login.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                     </li>
                     <div class="compte">
                         <a><i class="fas fa-user"></i></a>
