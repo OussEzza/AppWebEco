@@ -1,8 +1,8 @@
 <?php
 // Informations de connexion à la base de données
 $servername = "localhost"; // Nom du serveur MySQL
-$username = "root"; // Votre nom d'utilisateur MySQL
-$password = ""; // Votre mot de passe MySQL
+$username = "user1"; // Votre nom d'utilisateur MySQL
+$password = "user1"; // Votre mot de passe MySQL
 $dbname = "storeos"; // Nom de votre base de données
 
 // Créer une connexion à la base de données
