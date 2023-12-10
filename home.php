@@ -1,4 +1,10 @@
-<body>
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('location:login.php');
+} else {
+
+?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -63,6 +69,12 @@
 
 
 
+        <a href="mail.php">go to send mail</a>
     </body>
 
     </html>
+
+<?php
+echo $_SESSION['id'];
+}
+?>

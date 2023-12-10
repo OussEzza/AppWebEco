@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
             max-width: 400px;
             margin: 0 auto;
         }
+
         .gradient-title {
             background-image: linear-gradient(to right, #FA8BFF, #2BD2FF, #2BFF88);
             -webkit-background-clip: text;
@@ -20,11 +22,12 @@
         }
     </style>
 </head>
+
 <body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
     <div class="container">
         <div class="card mx-auto p-4 custom-form">
             <div class="card-body">
-            <?php
+                <?php
                 session_start();
                 include("connection.php");
 
@@ -32,14 +35,14 @@
                     $email = mysqli_real_escape_string($conn, $_POST['email']);
                     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-                    $result = mysqli_query($conn, "SELECT * FROM users WHERE Email='$email' AND motDePasse='$password'") or die(mysqli_error($conn));
+
+                    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'") or die(mysqli_error($conn));
                     $row = mysqli_fetch_assoc($result);
 
-                    if ($row) {
-                        $_SESSION['valid'] = $row['Email'];
-                        $_SESSION['username'] = $row['Username'];
-                        $_SESSION['id'] = $row['Id'];
+                    $motDePass = $row['motDePasse'];
 
+                    if (password_verify($password, $motDePass)) {
+                        $_SESSION['id'] = $row['Id'];
                         // Redirection vers la page d'accueil
                         header("Location: home.php");
                         exit();
@@ -50,7 +53,7 @@
                         echo "<a href='login.php' class='btn btn-primary'>Retour</a>";
                     }
                 }
-            ?>
+                ?>
 
                 <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
                 <form action="" method="post">
@@ -77,4 +80,5 @@
     <!-- Inclure Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

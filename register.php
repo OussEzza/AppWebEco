@@ -28,11 +28,12 @@
                 include("connection.php");
 
                 if (isset($_POST['submit'])) {
-                    $nom_utilisateur = $_POST['username'];
-                    $email = $_POST['email'];
-                    $motDePasse = $_POST['password'];
-                    $adresse = $_POST['adresse'];
-                    $numero_telephone = $_POST['numero_telephone'];
+                    $_SESSION['username'] = $nom_utilisateur = $_POST['username'];
+                    $_SESSION['email'] = $email = $_POST['email'];
+                    $motDePasse = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+                    $_SESSION['address'] = $adresse = $_POST['adresse'];
+                    $_SESSION['phone'] = $numero_telephone = $_POST['numero_telephone'];
 
                     $verify_query = mysqli_query($conn, "SELECT Email FROM users WHERE Email='$email'");
 
@@ -41,7 +42,7 @@
                                     <p>Cet e-mail est déjà utilisé, veuillez en choisir un autre !</p>
                                 </div>";
                     } else {
-                        mysqli_query($conn, "INSERT INTO users(nom_utilisateur,numero_telephone,adresse,email,motDePasse) 
+                        mysqli_query($conn, "INSERT INTO users(Username,numero_telephone,adresse,email,motDePasse) 
                           VALUES('$nom_utilisateur','$numero_telephone','$adresse','$email','$motDePasse')") or die("Erreur");
 
                         echo "<div class='alert alert-success'>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="numero_telephone" class="form-label">Numéro de téléphone</label>
-                        <input type="text" name="numero_telephone" id="numero_telephone" class="form-control" autocomplete="off" required>
+                        <input type="number" name="numero_telephone" id="numero_telephone" class="form-control" autocomplete="off" required>
                     </div>
 
                     <div class="mb-3">

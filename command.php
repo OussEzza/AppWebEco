@@ -1,17 +1,25 @@
 <?php
-require_once('mail.php'); // Inclure le fichier qui envoie l'email
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('location:login.php');
+} else {
 
-// Ici, vous pouvez ajouter d'autres traitements ou actions nécessaires pour votre application
+?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-// Par exemple, si vous souhaitez effectuer des opérations après l'envoi de l'email
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Command</title>
+    </head>
 
-// Envoyer l'email
-try {
-    $mail->send();
-    echo 'Email envoyé avec succès !';
-} catch (Exception $e) {
-    echo "L'envoi de l'email a échoué. Erreur : {$mail->ErrorInfo}";
+    <body>
+        <h1>Code envoyer avec succes !</h1>
+    </body>
+
+    </html>
+
+<?php
 }
-
-// Autres traitements ou actions
 ?>
