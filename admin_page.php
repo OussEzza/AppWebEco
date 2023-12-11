@@ -1,13 +1,4 @@
-<?php
-session_start();
-include 'connection.php';
 
-// Vérifie si un utilisateur est connecté et s'il a le type 'admin'
-if (!(isset($_SESSION['user_type']) && $_SESSION['type'] === 'admin')) {
-    header('Location: login.php');
-    exit();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
