@@ -137,7 +137,7 @@
             echo '<td>' . $row['price'] . '</td>';
             echo '<td>' . $row['quantitate'] . '</td>';
             echo '<td>' . $row['description'] . '</td>';
-            echo '<td><img src="' . $row['product_image'] . '" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>';
+            echo '<td><img src="photo/' . $row['product_image'] . '" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>';
             echo '<td>';
             echo '<a href="?action=edit&id=' . $row['id'] . '">Modifier</a> | ';
             echo '<a href="?action=delete&id=' . $row['id'] . '" onclick="return confirm(\'Voulez-vous vraiment supprimer ce produit?\')">Supprimer</a>';
