@@ -136,7 +136,7 @@ if (!isset($_SESSION['email'])) {
 
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
-                echo '<td style="text-align: center;"><img class="imgpanier" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
+                echo '<td style="text-align: center;"><img class="imgpanier" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
                 echo '<td>' . $row['product_name'] . '</td>';
 
                 echo '<td>';

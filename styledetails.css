@@ -1,54 +1,73 @@
+/* Import de la police */
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-*{
+
+/* Réinitialisation de la police pour tous les éléments */
+* {
   font-family: Poppins;
 }
-
-.product-details h2 {
+.product-container{
+  margin: auto auto;
+  width: 80%;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+  padding: 20px;
+}
+/* Titre du produit */
+.product-details h3 {
   font-size: 28px;
   margin-top: 0;
-
 }
 
+/* Conteneur pour l'image et la description */
 .image-description {
-  display: flex; 
-  justify-content:space-around;
+  display: flex;
+  align-items: flex-start; /* Alignement vertical en haut */
   margin-bottom: 20px;
 }
 
+/* Conteneur de l'image avec une marge à droite */
 .image-container {
-  margin-left: 200px;
   margin-right: 20px;
 }
 
-.image-container img {
-  max-width: 50%;
-}
-
-
+/* Style de l'image */
 #product-image {
-  max-width: 400px;
-  height: auto;
+  /* margin-top: 0px; */
+  margin-right: 10px;
+  max-width: 500px; /* Image prenant toute la largeur disponible */
+  height: 400px; /* Pour conserver les proportions */
   border-radius: 8px;
-
+  padding: -100px;
 }
 
+/* Conteneur pour les informations du produit */
 .info-container {
-  display: block;
-  margin-left: 40px;
+  display: flex;
   flex-direction: column;
+  justify-content: center; /* Centrage vertical */
 }
 
-.price,
+/* Styles pour le prix et la quantité */
+.price{
+  color: #45d62e;
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .quantity {
   margin: 5px 0;
-
 }
 
+/* Titre pour la description */
 .description-container h4 {
-  margin: 5px 0;
+  /* margin:  0; */
+  margin-top: 50px;
 }
 
+/* Description du produit */
 .description {
+  margin-top: 0px;
   line-height: 1.6;
 }
 
@@ -57,20 +76,31 @@
   text-align: center;
 }
 
-.btnback {
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.btnback, .addpanier {
   background-color: #0dff00;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-a{
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
+  text-decoration: none; /* Assurez-vous que le lien n'a pas de soulignement */
+  color: black; /* Couleur du texte */
+  font-weight: 600; /* Épaisseur du texte */
 }
 
-.btnback:hover {
+.btnback:hover, .addpanier:hover {
   background-color: #15b300;
+}
+
+.btnback:active, .addpanier:active {
+  transform: translateY(2px); /* Décaler légèrement vers le bas lorsqu'il est cliqué */
+}
+
+.addpanier{
+  text-align: center;
 }

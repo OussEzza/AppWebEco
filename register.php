@@ -50,7 +50,7 @@
                 if (isset($_POST['submit'])) {
                     $nom_utilisateur = $_POST['username'];
                     $email = $_POST['email'];
-                    $motDePasse = $_POST['password'];
+                    $motDePasse = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $adresse = $_POST['adresse'];
                     $numero_telephone = $_POST['numero_telephone'];
 

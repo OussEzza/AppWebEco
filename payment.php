@@ -40,7 +40,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="divpanier">';
                         echo '<h4>' . $row['product_name'] . '</h4>';
                         echo '<div class="image">';
-                        echo '<img class="imgpanier" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '<img class="imgpanier" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
                         echo '</div>';
                         echo '<div class="product-details">';
                         echo '<p class="price" >Prix: ' . $row['price'] . ' $</p>';
