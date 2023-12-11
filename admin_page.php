@@ -1,48 +1,39 @@
 <?php
-
-include 'config.php';
-
 session_start();
+include 'connection.php';
 
-$admin_id = $_SESSION['admin_id'];
-
-if(!isset($admin_id)){
-   header('location:login.php');
+// Vérifie si un utilisateur est connecté et s'il a le type 'admin'
+if (!(isset($_SESSION['user_type']) && $_SESSION['type'] === 'admin')) {
+    header('Location: login.php');
+    exit();
 }
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>admin panel</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-   <!-- custom admin css file link  -->
-   <link rel="stylesheet" href="css/admin_style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneau d’administration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="admin_page.css">
 </head>
 <body>
-   
+
 <?php include 'admin_header.php'; ?>
 
-<!-- admin dashboard section starts  -->
+<section class="DASHBOARD">
 
-<section class="dashboard">
-
-   <h1 class="title">dashboard</h1>
+   <h1 class="title">TABLEAU DE BORD</h1>
+ 
 
    <div class="box-container">
 
       <div class="box">
          <?php
             $total_pendings = 0;
-            $select_pending = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'pending'") or die('query failed');
+            $select_pending = mysqli_query($conn, "SELECT * FROM `products` WHERE payment_status = 'pending'")or die('query failed');
             if(mysqli_num_rows($select_pending) > 0){
                while($fetch_pendings = mysqli_fetch_assoc($select_pending)){
                   $total_price = $fetch_pendings['total_price'];
@@ -126,6 +117,9 @@ if(!isset($admin_id)){
    </div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="js/admin_script.js"></script>
+
 
 <!-- admin dashboard section ends -->
 
@@ -136,9 +130,6 @@ if(!isset($admin_id)){
 
 
 
-
-<!-- custom admin js file link  -->
-<script src="js/admin_script.js"></script>
-
+ 
 </body>
 </html>
