@@ -25,7 +25,6 @@
     <div class="container">
         <div class="card mx-auto p-4 custom-form">
             <div class="card-body">
-<<<<<<< HEAD
                 <?php
                 session_start();
                 include("connection.php");
@@ -55,8 +54,6 @@
                 }
                 ?>
 
-=======
->>>>>>> dc7606fa9b9eeab96ebac5661f92a4fbbfdf0c4c
                 <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
 
                 <!-- Ajout de la div pour afficher les erreurs -->
