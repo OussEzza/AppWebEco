@@ -162,7 +162,7 @@ if (!isset($_SESSION['email'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product-details">';
                     echo '<div class="image-container">';
-                    echo '<img class="product-image" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
                     echo '</div>';
                     echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
                     echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
@@ -195,7 +195,7 @@ if (!isset($_SESSION['email'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product-details">';
                     echo '<div class="image-container">';
-                    echo '<img class="product-image" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
                     echo '</div>';
                     echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
                     echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
@@ -229,7 +229,7 @@ if (!isset($_SESSION['email'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product-details">';
                     echo '<div class="image-container">';
-                    echo '<img class="product-image" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
                     echo '</div>';
                     echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
                     echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
