@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +35,7 @@
                     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
 
-                    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'") or die(mysqli_error($conn));
+                    $result = mysqli_query($conn, "SELECT * FROM users WHERE Email='$email'") or die(mysqli_error($conn));
                     $row = mysqli_fetch_assoc($result);
 
                     $motDePass = $row['motDePasse'];
@@ -49,7 +50,6 @@
                         echo "<div class='alert alert-danger'>
                             <p>Adresse e-mail ou mot de passe incorrect</p>
                         </div>";
-                        echo "<a href='login.php' class='btn btn-primary'>Retour</a>";
                     }
                 }
                 ?>
@@ -57,36 +57,34 @@
                 <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
 
                 <!-- Ajout de la div pour afficher les erreurs -->
-                <div id="error-alert" class="alert alert-danger d-none" role="alert"></div>
+                <!-- <div id="error-alert" class="alert alert-danger d-none" role="alert"></div> -->
                 <?php
-session_start();
-include("connection.php");
 
-if (isset($_POST['submit'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+                if (isset($_POST['submit'])) {
+                    $email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'") or die(mysqli_error($conn));
-    $row = mysqli_fetch_assoc($result);
+                    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'") or die(mysqli_error($conn));
+                    $row = mysqli_fetch_assoc($result);
 
-    if ($row && isset($row['motDePasse']) && $password === $row['motDePasse']) {
-        $_SESSION['id'] = $row['Id'];
-        
-        if ($row['type'] === 'admin') {
-            header("Location: admin_header.php");
-        } else {
-            header("Location: home.php");
-        }
-        exit();
-    } else {
-        // JavaScript pour afficher l'alerte d'erreur
-        echo "<script>
-                document.getElementById('error-alert').classList.remove('d-none');
-                document.getElementById('error-alert').innerHTML = 'Adresse e-mail ou mot de passe incorrect';
-              </script>";
-    }
-}
-?>
+                    if ($row && isset($row['motDePasse']) && $password === $row['motDePasse']) {
+                        $_SESSION['id'] = $row['Id'];
+
+                        if ($row['type'] === 'admin') {
+                            header("Location: admin_header.php");
+                        } else {
+                            header("Location: home.php");
+                        }
+                        exit();
+                    } else {
+                        // JavaScript pour afficher l'alerte d'erreur
+            //             echo "<script>
+            //     document.getElementById('error-alert').classList.remove('d-none');
+            //     document.getElementById('error-alert').innerHTML = 'Adresse e-mail ou mot de passe incorrect';
+            //   </script>";
+                    }
+                }
+                ?>
 
 
                 <form action="" method="post">
@@ -112,4 +110,5 @@ if (isset($_POST['submit'])) {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
