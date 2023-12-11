@@ -1,15 +1,24 @@
 /* Style du tableau des produits dans le panier */
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+  font-family: Poppins;
+}
+
+.table-conrtainer{
+  border-radius: 50px;
+}
 .table1 {
-  width: 100%;
+  margin: 80px auto;
+  width: 70%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .table1 th,
 .table1 td {
-  border: 1px solid #ddd;
+  border: none;
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 .table1 th {
@@ -25,8 +34,9 @@
 }
 
 .imgpanier {
-  max-width: 80px; /* Ajuster la taille de l'image */
+  max-width: 100px; /* Ajuster la taille de l'image */
   height: auto;
+  border-radius: 5px;
 }
 
 .btnremove {
@@ -37,7 +47,7 @@
   cursor: pointer;
 }
 
-.btnremove:hover{
+.btnremove:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -67,9 +77,23 @@ input[type="number"] {
   border-radius: 6px;
 }
 
+.btnback {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #45d62e;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  z-index: 1;
+}
+
 .btnback a {
   text-decoration: none;
   color: black;
+  font-weight: bold;
 }
 
 .gopayment a {
@@ -158,7 +182,6 @@ input[type="number"] {
   display: block; /* Assurez-vous que le message est visible */
   transition: opacity 0.5s ease; /* Ajoute une transition douce */
 }
-
 
 /* styledetails.css */
 

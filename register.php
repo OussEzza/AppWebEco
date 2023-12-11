@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +12,9 @@
             max-width: 400px;
             margin: 0 auto;
         }
+
         .gradient-title {
-            background-image: linear-gradient(to right,#FA8BFF,#2BD2FF,#2BFF88);
+            background-image: linear-gradient(to right, #FA8BFF, #2BD2FF, #2BFF88);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -34,6 +36,7 @@
 
     </style>
 </head>
+
 <body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
     <div class="container">
         <div class="card p-4 custom-form">
@@ -73,6 +76,11 @@
                         echo "<div class='alert alert-success'>
                                     <p>Inscription réussie !</p>
                                 </div>";
+
+                        echo "  <div class='text-center'>
+                                <a href='login.php' class='btn btn-primary'>Se connecter maintenant</a>
+                            </div>";
+
                     }
                 }
                 ?>
@@ -115,6 +123,9 @@
             </div>
         </div>
     </div>
+</body>
+
+</html>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

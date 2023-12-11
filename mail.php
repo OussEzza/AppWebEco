@@ -28,22 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase'])) 
         $verificationCode = substr(md5(uniqid(mt_rand(), true)), 0, 8);
 
         // Insertion du code de vérification dans la base de données
-        $stmt = $conn->prepare("INSERT INTO commandes (code, email) VALUES (?, ?)");
-        $stmt->bind_param("ss", $verificationCode, $row['Email']);
-        $stmt->execute();
-        $stmt->close();
+        // $stmt = $conn->prepare("INSERT INTO commandes (code, email) VALUES (?, ?)");
+        // $stmt->bind_param("ss", $verificationCode, $row['Email']);
+        // $stmt->execute();
+        // $stmt->close();
 
         // Configuration et envoi de l'e-mail
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com'; // Configurez votre serveur SMTP
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'votre_mail@gmail.com'; // Remplacez par votre adresse Gmail
-        $mail->Password   = 'votre_password'; // Utilisez le mot de passe d'application généré
+        $mail->Username   = 'ezzahriraja@gmail.com'; // Remplacez par votre adresse Gmail
+        $mail->Password   = 'rljdsyklshfeodap'; // Utilisez le mot de passe d'application généré
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
 
-        $mail->setFrom('votre_mail@gmail.com', 'Votre boutique en ligne');
-        $mail->addAddress($row['Email']);
+        $mail->setFrom('ezzahriraja@gmail.com', 'Votre boutique en ligne');
+        $mail->addAddress('zakariael1212@gmail.com');
 
         $mail->isHTML(true);
         $mail->CharSet = "UTF-8";

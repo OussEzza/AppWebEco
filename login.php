@@ -25,6 +25,38 @@
     <div class="container">
         <div class="card mx-auto p-4 custom-form">
             <div class="card-body">
+<<<<<<< HEAD
+                <?php
+                session_start();
+                include("connection.php");
+
+                if (isset($_POST['submit'])) {
+                    $email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+
+                    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'") or die(mysqli_error($conn));
+                    $row = mysqli_fetch_assoc($result);
+
+                    $motDePass = $row['motDePasse'];
+
+                    if (password_verify($password, $motDePass)) {
+                        $_SESSION['id'] = $row['Id'];
+                        $_SESSION['email'] = $row['Email'];
+                        // Redirection vers la page d'accueil
+                        header("Location: home.php");
+                        exit();
+                    } else {
+                        echo "<div class='alert alert-danger'>
+                            <p>Adresse e-mail ou mot de passe incorrect</p>
+                        </div>";
+                        echo "<a href='login.php' class='btn btn-primary'>Retour</a>";
+                    }
+                }
+                ?>
+
+=======
+>>>>>>> dc7606fa9b9eeab96ebac5661f92a4fbbfdf0c4c
                 <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
 
                 <!-- Ajout de la div pour afficher les erreurs -->

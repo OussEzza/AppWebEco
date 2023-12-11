@@ -1,60 +1,54 @@
-/* styledetails.css */
-
-/* Styles pour le conteneur principal des détails du produit */
-.product-details {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+  font-family: Poppins;
 }
 
-/* Styles pour le titre du produit */
 .product-details h2 {
   font-size: 28px;
   margin-top: 0;
-  color: #333;
+
 }
 
-/* Styles pour l'image du produit */
-.image-container {
-  text-align: center;
+.image-description {
+  display: flex; 
+  justify-content:space-around;
   margin-bottom: 20px;
 }
 
-#product-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+.image-container {
+
+  margin-right: 20px;
 }
 
-/* Styles pour les informations du produit */
+.image-container img {
+  max-width: 50%;
+}
+
+
+#product-image {
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+
+}
+
 .info-container {
-  display: flex;
+  display: block;
+  margin-left: 40px;
   flex-direction: column;
 }
 
 .price,
 .quantity {
   margin: 5px 0;
-  color: #555;
-}
 
-/* Styles pour la description du produit */
-.description-container {
-  margin-bottom: 20px;
 }
 
 .description-container h4 {
   margin: 5px 0;
-  color: #333;
 }
 
 .description {
-  color: #666;
   line-height: 1.6;
 }
 
@@ -64,16 +58,19 @@
 }
 
 .btnback {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #0dff00;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
-  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+a{
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
 
 .btnback:hover {
-  background-color: #0056b3;
+  background-color: #15b300;
 }
