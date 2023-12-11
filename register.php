@@ -77,9 +77,7 @@
                                     <p>Inscription réussie !</p>
                                 </div>";
 
-                        echo "  <div class='text-center'>
-                                <a href='login.php' class='btn btn-primary'>Se connecter maintenant</a>
-                            </div>";
+                   
 
                     }
                 }
