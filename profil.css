@@ -1,0 +1,61 @@
+/* Style général */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+body {
+    font-family: Poppins;
+    background-color: #f4f4f4;
+}
+.profile{
+    max-width: 50%;
+    margin: 250px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style du formulaire */
+form {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-left: 20px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    max-width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 320px;
+    margin-bottom: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}

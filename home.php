@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['email'])) {
     header('location:login.php');
 } else {
 
@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])) {
     <body>
         <header>
             <div class="category-logo">
-                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="profil.php"><i class="fas fa-user"></i></a>
             </div>
             <div class="logo">
                 <h1><a href="home.php">ShoppingPlanet</a></h1>
@@ -41,9 +41,9 @@ if (!isset($_SESSION['username'])) {
                     <li>
                         <a href="produit1.php"><i class="fas fa-shopping-bag"></i> Produits</a>
                         <ul class="submenu">
-                            <li><a href="#section1">Claviers</a></li>
-                            <li><a href="#section2">Écouteurs</a></li>
-                            <li><a href="#section3">Souris</a></li>
+                            <li><a href="produit1.php#section1">Claviers</a></li>
+                            <li><a href="produit1.php#section2">Écouteurs</a></li>
+                            <li><a href="produit1.php#section3">Souris</a></li>
                             <!-- Ajoutez autant d'options que nécessaire -->
                         </ul>
                     </li>
@@ -58,7 +58,11 @@ if (!isset($_SESSION['username'])) {
                         <a href="login.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                     </li>
                     <div class="compte">
-                        <a><i class="fas fa-user"></i></a>
+                        <a href="logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg></i></a>
                     </div>
                 </ul>
             </nav>
@@ -68,13 +72,38 @@ if (!isset($_SESSION['username'])) {
 
 
 
+        <?php
+
+        // obtenir_nombre_produits_panier.php
+        require_once ('connection.php');
+        $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
+
+        $query = "SELECT SUM(quantity) AS total_items FROM panier WHERE user_id = '$currentUserId'";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $totalItems = $row['total_items']; // Nombre total d'articles dans le panier
+        } else {
+            $totalItems = 0;
+        }
+        ?>
 
         <a href="mail.php">go to send mail</a>
+
+        <script>
+            // JavaScript ici pour utiliser le résultat PHP, par exemple :
+            var itemCount = <?php echo $totalItems; ?>;
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('nombreProduitsPanier').innerText = itemCount;
+            });
+        </script>
+
     </body>
 
     </html>
 
 <?php
-echo $_SESSION['id'];
+    echo $_SESSION['id'];
 }
 ?>

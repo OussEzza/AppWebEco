@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['email'])) {
     header('location:login.php');
 } else {
 
@@ -14,10 +14,8 @@ if (!isset($_SESSION['username'])) {
         <link rel="stylesheet" href="stylespanier.css">
         <title>Panier</title>
     </head>
-
     <body>
         <?php
-        session_start();
         require_once('connection.php');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -125,9 +123,9 @@ if (!isset($_SESSION['username'])) {
 
         if ($result && mysqli_num_rows($result) > 0) {
             // Affichage des détails des produits dans le panier
+            echo '<div class="table-conrtainer">';
             echo '<table class="table1">';
             echo '<tr>';
-            echo '<th>Numéro du produit</th>';
             echo '<th>Photo</th>';
             echo '<th>Nom</th>';
             echo '<th>Quantité</th>';
@@ -135,12 +133,10 @@ if (!isset($_SESSION['username'])) {
             echo '<th>Action</th>';
             echo '</tr>';
 
-            $productNumber = 1;
 
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
-                echo '<td>' . $productNumber . '</td>';
-                echo '<td><img class="imgpanier" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
+                echo '<td style="text-align: center;"><img class="imgpanier" src="' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
                 echo '<td>' . $row['product_name'] . '</td>';
 
                 echo '<td>';
@@ -167,16 +163,21 @@ if (!isset($_SESSION['username'])) {
                 echo '<td>';
                 echo '<form method="post" action="panier.php">';
                 echo '<input type="hidden" name="remove_product" value="' . $row['id'] . '">';
-                echo '<input class="btnremove" type="submit" name="remove_btn" value="X">';
+                echo '<button class="btnremove" type="submit" name="remove_btn" value="X">';
+                echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+                <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793z"/>
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>';
+                echo '</button>';
                 echo '</form>';
                 echo '</td>';
                 echo '</tr>';
 
-                $productNumber++;
+
                 $totalAmount += $row['price'] * $row['quantity'];
             }
             echo '</table>';
-
+            echo '</div>';
             echo '<div class ="total-panier">';
             echo '<h1>Total panier</h1>';
             echo '<table class="total-panier-table">';
@@ -201,7 +202,7 @@ if (!isset($_SESSION['username'])) {
             echo '</div>';
         } else {
             echo '<div class="Noproduct">';
-            echo '<img src="https://ae01.alicdn.com/kf/Sa15be314eadd4a9bb186ab4a0cb971b5D/360x360.png_.webp" class="es--comet-pro-fallback-image--35CZGig" data-spm-anchor-id="a2g0o.cart.0.i3.3244378d1lo9Se"/>';
+            echo '<img src="photo/NoProduct.webp" class="es--comet-pro-fallback-image--35CZGig" data-spm-anchor-id="a2g0o.cart.0.i3.3244378d1lo9Se"/>';
             echo '<p class="no-product-message">Pas encore d\'articles ? Continuez vos achats pour en savoir plus.</p>';
             echo '</div>';
         }

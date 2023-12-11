@@ -1,4 +1,9 @@
 /* Style général du conteneur de produit */
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+  font-family: Poppins;
+}
+
 .product {
   width: calc(20%-10px);
   display: flex;
@@ -98,7 +103,7 @@ button:active{
 }
 /* Style du bouton "Ajouter au Panier" */
 .addpanier {
-  background-color: orange;
+  background-color: #45d62e;
   color: white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -107,10 +112,12 @@ button:active{
 .affdetails {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: white;
-  background-color: #a8a1a1;
+  background-color: rgba(0, 0, 0, 0.6);
 }
+
 .button-container .affdetails a {
   text-decoration: none;
+  color: white;
 }
 
 .button-container button a:hover {
@@ -118,7 +125,7 @@ button:active{
 }
 
 .price{
-  color: orange;
+  color: #45d62e;
   font-weight: bold;
   font-size: 16px;
 }

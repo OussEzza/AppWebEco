@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +12,16 @@
             max-width: 400px;
             margin: 0 auto;
         }
+
         .gradient-title {
-            background-image: linear-gradient(to right,#FA8BFF,#2BD2FF,#2BFF88);
+            background-image: linear-gradient(to right, #FA8BFF, #2BD2FF, #2BFF88);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
     </style>
 </head>
+
 <body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
     <div class="container">
         <div class="card p-4 custom-form">
@@ -49,7 +52,7 @@
                                     <p>Inscription réussie !</p>
                                 </div>";
 
-                        echo"  <div class='text-center'>
+                        echo "  <div class='text-center'>
                                 <a href='login.php' class='btn btn-primary'>Se connecter maintenant</a>
                             </div>";
                     }
@@ -84,4 +87,10 @@
                     <div class="mb-3 text-center">
                         <button type="submit" class="btn btn-primary btn-lg" name="submit">S'inscrire</button>
                     </div>
-                   
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

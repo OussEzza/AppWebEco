@@ -1,8 +1,10 @@
 /* stylepayment.css */
-
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+  font-family: Poppins;
+}
 /* Style général de la page */
 body {
-  font-family: Arial, sans-serif;
   background-color: white;
   color: black;
   margin: 0;
@@ -20,10 +22,21 @@ body {
 }
 
 .column.left {
+  width: 300px;
   min-height: 100vh;
   position: relative;
   padding-bottom: 50px;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.column.right {
+  flex: 1;
+  max-width: 30%;
+  height: 88vh;
+  position: relative;
+  padding-bottom: 50px;
+  display: block;
   flex-wrap: wrap;
 }
 
@@ -37,9 +50,10 @@ body {
   width: 250px;
   margin: 20px;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid #f2f2f2;
   border-radius: 5px;
   background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .divpanier {
@@ -50,13 +64,14 @@ body {
 }
 
 .imgpanier {
+  border: 1px solid #45d62e;
   max-width: 100px;
   height: auto;
   margin-bottom: 10px;
 }
 
 .product-details {
-  display: flex;
+  display: block;
   justify-content: space-between;
 }
 
@@ -64,6 +79,7 @@ body {
   font-weight: bold;
   color: #45d62e;
   margin-bottom: 5px;
+  margin-right: 10px;
 }
 
 .total-amount {
@@ -81,7 +97,6 @@ body {
   background-color: #45d62e;
   color: black;
   padding: 10px 20px;
-  text-decoration: none;
   border-radius: 5px;
   display: inline-block;
   z-index: 1;
@@ -121,6 +136,7 @@ h1 {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   float: right; /* positionnement à droite */
+  text-align: left;
 }
 
 /* Styles pour le tableau */

@@ -39,21 +39,24 @@
             // Affiche les détails du produit
             $row = $result->fetch_assoc();
 
-            echo '<div class="product-details">';
-            echo '<h2>' . $row['product_name'] . '</h2>';
-            echo '<div class="image-container">';
+           
+            echo '<div class = "image-description"';
+
+            echo '<span class="image-container">';
             echo '<img id="product-image" src="' . $row['product_image'] . '" alt="' . $row['product_name'] . '" />';
+            echo '</span>';
+            echo '<div>';
+            echo '<h4>Description: </h4> <pre class="description">' . $row['description'] . '</pre>';
+            echo'</div>';
             echo '</div>';
+
             echo '<div class="info-container">';
+            echo '<h2>' . $row['product_name'] . '</h2>';
             echo '<p class="price">Prix: ' . $row['price'] . '</p>';
             echo '<p class="quantity">Quantité: ' . $row['quantitate'] . '</p>';
-            echo '<div class="description-container">';
-            echo '<h4>Description: </h4> <p class="description">' . $row['description'] . '</p>';
             echo '</div>';
             echo '<div class="image-buttons">';
             echo '<button class="btnback" ><a href="produit1.php">Back To Product</a></button>';
-            echo '</div>';
-            echo '</div>';
             echo '</div>';
         } else {
             echo "Aucun produit trouvé pour cet ID.";

@@ -43,6 +43,7 @@
 
                     if (password_verify($password, $motDePass)) {
                         $_SESSION['id'] = $row['Id'];
+                        $_SESSION['email'] = $row['Email'];
                         // Redirection vers la page d'accueil
                         header("Location: home.php");
                         exit();
