@@ -71,7 +71,12 @@ if (isset($_POST['submit'])) {
 
     if ($row && isset($row['motDePasse']) && $password === $row['motDePasse']) {
         $_SESSION['id'] = $row['Id'];
-        header("Location: home.php");
+        
+        if ($row['type'] === 'admin') {
+            header("Location: admin_header.php");
+        } else {
+            header("Location: home.php");
+        }
         exit();
     } else {
         // JavaScript pour afficher l'alerte d'erreur
