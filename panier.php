@@ -105,7 +105,7 @@ if (!isset($_SESSION['email'])) {
             setTimeout(function(){
                 document.querySelector(".error-message").style.display = "none";
             }, 3000); // Disparaît après 3 secondes (3000 ms)
-          </script>';
+            </script>';
         }
 
 

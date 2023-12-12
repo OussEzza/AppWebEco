@@ -43,7 +43,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<img class="imgpanier" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
                         echo '</div>';
                         echo '<div class="product-details">';
-                        echo '<p class="price" >Prix: ' . $row['price'] . ' $</p>';
+                        echo '<p class="price" >Prix: ' . $row['price'] . ' MAD</p>';
                         echo '<p><i>Quantité: </i>' . $row['quantity'] . '</p>';
                         echo '</div>';
                         echo '</div>';

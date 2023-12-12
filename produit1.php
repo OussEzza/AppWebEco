@@ -78,6 +78,7 @@ if (!isset($_SESSION['email'])) {
         // Inclure votre fichier de connexion à la base de données
         require_once('connection.php');
 
+        $error = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
             $productId = $_POST['product_id'];
@@ -112,15 +113,23 @@ if (!isset($_SESSION['email'])) {
                         $updateQuery = "UPDATE panier SET quantity = '$newQuantity' WHERE product_id = '$productId' AND user_id = '$currentUserId'";
                         $updateResult = mysqli_query($conn, $updateQuery);
                     } else {
-                        // Si la quantité maximale en stock est atteinte, afficher un message d'erreur via JavaScript
                         echo '<script>';
                         echo 'document.addEventListener(\'DOMContentLoaded\', function() {';
                         echo '    var button = document.querySelector(\'.addpanier[data-product-id="' . $productId . '"]\');';
-                        echo '    button.style.color = \'red\';';
-                        echo '    button.innerText  = \'Maximum quantity\';';
+                        echo '    button.style.color = \'black\';';
+                        echo '    button.style.backgroundColor = \'red\';';
+                        echo '    button.style.padding = \'6px\';';
+                        echo '    button.innerText = \'En rupture de stock\';';
                         echo '    button.disabled = true;'; // Désactiver le bouton
                         echo '});';
                         echo '</script>';
+
+                        echo '<div id="errorMessage" class="error-message">Maximum quantity !!</div>';
+                        echo '<script>
+                            setTimeout(function(){
+                                document.getElementById("errorMessage").style.display = "none";
+                            }, 3000); // Disparaît après 3 secondes (3000 ms)
+                            </script>';
                     }
                 } else {
                     //gestion d'erreur 
@@ -134,6 +143,17 @@ if (!isset($_SESSION['email'])) {
             }
         } else {
             //gestion d'erreur 
+        }
+
+        // Affichage du message d'erreur si une erreur est survenue
+
+        if (!empty($error) || !empty($error1)) {
+            echo '<div class="error-message">' . ($error ? $error : $error1) . '</div>';
+            echo '<script>
+                    setTimeout(function(){
+                        document.querySelector(".error-message").style.display = "none";
+                    }, 3000); // Disparaît après 3 secondes (3000 ms)
+                    </script>';
         }
 
 
@@ -150,12 +170,13 @@ if (!isset($_SESSION['email'])) {
         } else {
             $totalItems = 0;
         }
+
+
         ?>
         <section id="section1">
             <h2 class="h2section">Claviers</h2>
             <div class="product-grid">
                 <?php
-                $id = 1;
                 // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'Keyboards'";
                 $result = mysqli_query($conn, $query);
@@ -171,12 +192,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post" class="inline-form">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $id . '">Voir les détails</a></button>';
+                        echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
                 ?>
@@ -204,12 +224,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
@@ -238,12 +257,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
@@ -272,12 +290,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
@@ -306,12 +323,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
@@ -340,12 +356,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
@@ -355,7 +370,7 @@ if (!isset($_SESSION['email'])) {
 
 
         <section id="section7">
-            <h2 class="h2section">Disques de jeux</h2>
+            <h2 class="h2section">Jeux</h2>
             <div class="product-grid">
                 <?php
 
@@ -374,12 +389,11 @@ if (!isset($_SESSION['email'])) {
                         echo '<div class="button-container">';
                         echo '<form method="post">';
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
                         echo '</div>';
                         echo '</div>';
-                        $id++;
                     }
                 }
 
