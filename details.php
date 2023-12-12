@@ -50,13 +50,13 @@ if (!isset($_SESSION['email'])) {
             echo '<p class="price">Prix : ' . $row['price'] . ' MAD</p>';
             echo '<p class="quantity">Quantité en stock : ' . $row['quantitate'] . '</p>';
             echo '</div>';
-            echo '<div class="image-buttons">';
-            echo '<button class="btnback" ><a href="produit1.php">Back To Product</a></button>';
-            echo '</div>';
             echo '<form method="post">';
             echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
             echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
             echo '</form>';
+            echo '<div class="image-buttons">';
+            echo '<button class="btnback" ><a href="produit1.php">Back To Product</a></button>';
+            echo '</div>';
             echo '</div>';
         } else {
             echo "Aucun produit trouvé pour cet ID.";

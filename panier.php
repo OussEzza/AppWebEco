@@ -128,8 +128,8 @@ if (!isset($_SESSION['email'])) {
             echo '<tr>';
             echo '<th>Photo</th>';
             echo '<th>Nom</th>';
-            echo '<th>Quantité</th>';
-            echo '<th>Prix</th>';
+            echo '<th class="rowQuantity">Quantité</th>';
+            echo '<th class="rowQuantity">Prix</th>';
             echo '<th>Action</th>';
             echo '</tr>';
 
@@ -139,7 +139,7 @@ if (!isset($_SESSION['email'])) {
                 echo '<td style="text-align: center;"><img class="imgpanier" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" /></td>';
                 echo '<td>' . $row['product_name'] . '</td>';
 
-                echo '<td>';
+                echo '<td class="rowQuantity">';
                 echo '<form method="post" action="panier.php">';
                 echo '<input type="hidden" name="update_quantity" value="' . $row['id'] . '">';
                 echo '<button class="quantiteless" type="submit" name="new_quantity_less">';
@@ -159,7 +159,7 @@ if (!isset($_SESSION['email'])) {
                 echo '</td>';
 
 
-                echo '<td>' . $row['price'] * $row['quantity'] . ' $</td>';
+                echo '<td class="rowQuantity">' . $row['price'] * $row['quantity'] . ' MAD</td>';
                 echo '<td>';
                 echo '<form method="post" action="panier.php">';
                 echo '<input type="hidden" name="remove_product" value="' . $row['id'] . '">';

@@ -4,22 +4,33 @@
   font-family: Poppins;
 }
 
-.product {
-  width: calc(20%-10px);
+
+.product-grid {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
 }
+
 .product-details {
   border: 1px solid #ccc;
+  width: calc(25% - 30px);
   margin-bottom: 20px;
-  max-width: 350px;
-  /* width: auto; */
-  height: auto;
-  margin: 20px;
   border: 1px solid #333;
   border-radius: 6px;
   background-color: #f0f0f0;
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Pour assurer quatre éléments par ligne */
+.product-details:nth-child(4n + 1) {
+  margin-left: 0;
+}
+
+.product-details:nth-child(4n) {
+  margin-right: 0;
 }
 
 /* Style des boutons */
