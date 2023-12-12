@@ -43,10 +43,11 @@ if (!isset($_SESSION['email'])) {
         $selectQuery = "SELECT * FROM users WHERE Id = '$userid'";
         $result = mysqli_query($conn, $selectQuery);
 
+        echo '<div class="container">';
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-
                 // Affichage des informations de l'utilisateur dans le formulaire
+                
                 echo "<div class='profile'>
                 <h1 class='card-title text-center mb-4 gradient-title'>PROFIL</h1>
                 <form action='profil.php' method='post'>
@@ -73,9 +74,42 @@ if (!isset($_SESSION['email'])) {
                     </div>
                     </form> 
                     </div>";
+                }
             }
-        }
+            echo '<div class="historique" >';
+            echo '<h1>Historique</h1>';
+            // Code pour récupérer l'historique depuis la base de données
+            
+            $query = "SELECT * FROM historique WHERE user_id = '$userid'";
+            $result = mysqli_query($conn, $query);
+            
+            if ($result && mysqli_num_rows($result) > 0) {
+                echo '<table>';
+                echo '<thead><tr><th>Commande ID</th><th>Date de commande</th><th>Détails de la commande</th><th>Prix Total</th><th>État de la commande</th><th>Méthode de paiement</th><th>Adresse de livraison</th></tr></thead>';
+                echo '<tbody>';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<td>' . $row['commande_id'] . '</td>';
+                    echo '<td>' . $row['date_commande'] . '</td>';
+                    echo '<td>' . $row['details_commande'] . '</td>';
+                    echo '<td>' . $row['prix_total'] . '</td>';
+                    echo '<td>' . $row['etat_commande'] . '</td>';
+                    echo '<td>' . $row['methode_paiement'] . '</td>';
+                    echo '<td>' . $row['adresse_livraison'] . '</td>';
+                    echo '</tr>';
+                }
+                echo '</tbody>';
+                echo '</table>';
+            } else {
+                echo 'Aucune commande trouvée.';
+            }
+            
+            echo '</div>';
 
+
+
+            
+            echo '</div>';
         ?>
     </body>
 

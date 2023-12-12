@@ -114,7 +114,7 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="command.css">
-        <title>Payment</title>
+        <title>Validation de commande</title>
     </head>
 
     <body>
@@ -128,7 +128,7 @@ if (!isset($_SESSION['email'])) {
 
 
         <?php
-
+        $message = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase-final'])) {
             $queryOrders = "SELECT token FROM orders WHERE user_id = '$userid'";
             $resultOrders = mysqli_query($conn, $queryOrders);
@@ -214,8 +214,6 @@ if (!isset($_SESSION['email'])) {
 
                 $mail->send();
 
-                echo '<div> La commande est valide !';
-                echo '</div>';
 
                 // Initialisation de la chaîne pour stocker les noms des produits avec leur quantité
                 $namesStringWithQuantity = '';
@@ -234,11 +232,52 @@ if (!isset($_SESSION['email'])) {
                                 SET username = '" . $rowUser['Username'] . "', number = '" . $rowUser['numero_telephone'] . "', address = '" . $rowUser['adresse'] . "', names_products = '$namesStringWithQuantity', total_price = '$totalAmount'
                                 WHERE token = '$token'";
                 $resultUpdate = mysqli_query($conn, $queryUpdate);
+
+                $message = "La commande est validé avec succès!";
+
+                $querySelect = "SELECT * FROM orders WHERE token = '$token'";
+                $resultSelect = mysqli_query($conn, $querySelect);
+
+                if ($resultSelect && mysqli_num_rows($resultSelect) > 0) {
+                    $rowSelect = mysqli_fetch_assoc($resultSelect);
+
+                    $userId = $rowSelect['user_id'];
+                    $commandId = $rowSelect['id'];
+                    $dateCommande = $rowSelect['Purchased_on'];
+                    $detailsCommande = $rowSelect['names_products'];
+                    $prixTotal = $rowSelect['total_price'];
+                    $etatCommande = $rowSelect['livraison_status']; // Mettez l'état approprié de la commande
+                    $methodePaiement = $rowSelect['method_payment']; // Mettez la méthode de paiement appropriée
+                    $adresseLivraison = $rowSelect['address'];
+
+                    // Requête d'insertion dans la table historique_achat
+                    $queryInsert = "INSERT INTO historique (user_id, commande_id, date_commande, details_commande, prix_total, etat_commande, methode_paiement, adresse_livraison) 
+                    VALUES ('$userId', '$commandId', '$dateCommande', '$detailsCommande', '$prixTotal', '$etatCommande', '$methodePaiement', '$adresseLivraison')";
+
+                    $resultInsert = mysqli_query($conn, $queryInsert);
+                    if ($resultInsert) {
+                        $queryDelete = "DELETE FROM panier WHERE user_id = '$userId'";
+                        $resultDelete = mysqli_query($conn, $queryDelete);
+                        // Supprimez la commande de la table orders si nécessaire
+                        // Exemple : DELETE FROM orders WHERE token = '$token';
+                    } else {
+                        // Gérer l'échec de l'insertion dans l'historique
+                    }
+                } else {
+                    // Gérer le cas où la commande n'est pas trouvée dans la table orders
+                }
             } else {
-                echo '<div>Le code de vérification est incorrect. Veuillez réessayer.</div>';
+                $message = "Le code de vérification est incorrect. Veuillez réessayer.";
             }
         }
-        ?>
+
+        if (!empty($message)) : ?>
+            <div class="message error">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+
+
     </body>
 
     </html>

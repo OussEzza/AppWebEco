@@ -97,7 +97,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="numero_telephone" class="form-label">Numéro de téléphone</label>
-                        <input type="number" name="numero_telephone" id="numero_telephone" class="form-control" autocomplete="off" required>
+                        <input type="number" name="numero_telephone" id="numero_telephone" value="212" class="form-control" autocomplete="off" required>
                         <span class="error-message"><?php echo $numero_telephoneErr; ?></span>
                     </div>
 
