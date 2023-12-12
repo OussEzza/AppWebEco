@@ -5,18 +5,19 @@
 * {
   font-family: Poppins;
 }
-.product-container{
-  margin: auto auto;
+/* .product-container{
   width: 80%;
   justify-content: space-between;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
   padding: 20px;
-}
+} */
 /* Titre du produit */
-.product-details h3 {
+.info-container h3 {
+  margin-left: 20px;
   font-size: 28px;
   margin-top: 0;
+  margin-bottom: -10px;
 }
 
 /* Conteneur pour l'image et la description */
@@ -33,7 +34,6 @@
 
 /* Style de l'image */
 #product-image {
-  /* margin-top: 0px; */
   margin-right: 10px;
   max-width: 500px; /* Image prenant toute la largeur disponible */
   height: 400px; /* Pour conserver les proportions */
@@ -50,25 +50,23 @@
 
 /* Styles pour le prix et la quantité */
 .price{
+  margin-left: 20px;
+  margin-bottom: -10px;
   color: #45d62e;
   font-weight: bold;
   font-size: 16px;
 }
 
 .quantity {
-  margin: 5px 0;
-}
-
-/* Titre pour la description */
-.description-container h4 {
-  /* margin:  0; */
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 /* Description du produit */
 .description {
+  width: 800px;
   margin-top: 0px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Styles pour le bouton de retour */
@@ -91,6 +89,7 @@ a{
   text-decoration: none; /* Assurez-vous que le lien n'a pas de soulignement */
   color: black; /* Couleur du texte */
   font-weight: 600; /* Épaisseur du texte */
+  margin-left: 20px;
 }
 
 .btnback:hover, .addpanier:hover {
