@@ -7,13 +7,14 @@
     <title>Gestion des Produits</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            
+            font-family: 'Roboto', sans-serif;
             color: #333;
             margin: 0;
             padding: 0;
+            background: linear-gradient(#f4f4f4, #e0d8c7);
         }
-
+        
         h1 {
             text-align: center;
             color: #333;
@@ -26,8 +27,10 @@
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 5px;
+            border-radius: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+          
         }
 
         label {
@@ -120,7 +123,11 @@
         background-color: #c0392b;
     }
     
-    
+    a:hover {
+    color: #3498db;
+}
+
+ 
     
     
 </style>
@@ -139,10 +146,9 @@
             <a href="admin_contacts.php">Messages</a>
         </nav>
 
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-        </div>
+       <div class="category-logo">
+                <a href="profil_admin.php"><i class="fas fa-user"></i></a>
+         </div>
     </div>
 </header>
 <body>
