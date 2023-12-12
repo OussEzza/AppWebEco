@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Produits</title>
-    <!-- Inclure les liens vers les styles CSS et autres ressources nécessaires -->
     <style>
-        /* Ajoutez vos styles ici */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
@@ -84,52 +82,87 @@
         <label for="product_image">Image du Produit:</label>
         <input type="file" name="product_image" accept="image/jpg, image/jpeg, image/png" required>
         <br>
+
         <div class="mb-3">
-        <label for="category" >Catégorie</label>
-        <input type="text" name="category" required>
-        </select>
-    </div>
+            <label for="category">Catégorie:</label>
+            <input type="text" name="category" required>
+        </div>
 
         <input type="submit" value="Ajouter le Produit" name="add_product">
     </form>
 
     <?php
-    // Inclure le fichier de connexion à la base de données
-    require_once('connection.php');
+require_once('connection.php');
 
-    // Gérer les actions (Ajout, Modification, Suppression)
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['add_product'])) {
-            // Traitement de l'ajout de produit
-            $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
-            $price = $_POST['price'];
-            $quantitate = $_POST['quantitate'];
-            $description = mysqli_real_escape_string($conn, $_POST['description']);
-            $product_image = $_FILES['product_image'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['add_product'])) {
+        $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
+        $price = $_POST['price'];
+        $quantitate = $_POST['quantitate'];
+        $description = mysqli_real_escape_string($conn, $_POST['description']);
+        $category = mysqli_real_escape_string($conn, $_POST['category']);
 
-            $insert_query = "INSERT INTO products (product_name, price, quantitate, description, product_image, categories) VALUES ('$product_name', '$price', '$quantitate', '$description', '$product_image', 'VotreCategorie')";
-            $insert_result = mysqli_query($conn, $insert_query);
+        $target_dir = "photo/";
+        $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-            if ($insert_result) {
-                // Si l'insertion est réussie, gérer l'upload de l'image (comme dans l'exemple précédent)
-                // ...
-                echo '<p>Produit ajouté avec succès!</p>';
+        // Vérifier si le fichier existe déjà
+        if (file_exists($target_file)) {
+            echo "Désolé, le fichier existe déjà.";
+            $uploadOk = 0;
+        }
+
+        // Vérifier la taille du fichier
+        if ($_FILES["product_image"]["size"] > 500000) {
+            echo "Désolé, votre fichier est trop volumineux.";
+            $uploadOk = 0;
+        }
+
+        // Vérifier si le fichier est une image
+        $check = getimagesize($_FILES["product_image"]["tmp_name"]);
+        if ($check === false) {
+            echo "Le fichier n'est pas une image.";
+            $uploadOk = 0;
+        }
+
+        // Vérifier les types de fichiers autorisés
+        $allowedTypes = ["jpg", "jpeg", "png", "gif"];
+        if (!in_array($imageFileType, $allowedTypes)) {
+            echo "Désolé, seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.";
+            $uploadOk = 0;
+        }
+
+        // Si tout est OK, télécharger le fichier
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+                echo "Le fichier " . htmlspecialchars(basename($_FILES["product_image"]["name"])) . " a été téléchargé.";
+
+                $insert_query = "INSERT INTO products (product_name, price, quantitate, description, product_image, categories) VALUES ('$product_name', '$price', '$quantitate', '$description', '" . basename($_FILES["product_image"]["name"]) . "', '$category')";
+                $insert_result = mysqli_query($conn, $insert_query);
+
+                if ($insert_result) {
+                    echo '<p>Produit ajouté avec succès!</p>';
+                } else {
+                    echo '<p>Erreur lors de l\'ajout du produit : ' . mysqli_error($conn) . '</p>';
+                }
             } else {
-                echo '<p>Erreur lors de l\'ajout du produit : ' . mysqli_error($conn) . '</p>';
+                echo "Une erreur s'est produite lors du téléchargement de votre fichier.";
             }
-        } elseif (isset($_POST['update_product'])) {
-            // Traitement de la mise à jour de produit
-            // ...
+        } else {
+            echo "Désolé, votre fichier n'a pas été téléchargé.";
         }
     }
+}
+ 
 
-    // Afficher les produits depuis la base de données
+
     $query = "SELECT * FROM products";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
         echo '<table border="1">';
-        echo '<tr><th>ID</th><th>Nom du Produit</th><th>Prix</th><th>Quantité</th><th>Description</th><th>Image</th><th>Actions</th></tr>';
+        echo '<tr><th>ID</th><th>Nom du Produit</th><th>Prix</th><th>Quantité</th><th>Description</th><th>Image</th><th>Catégorie</th><th>Actions</th></tr>';
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<tr>';
             echo '<td>' . $row['id'] . '</td>';
@@ -138,6 +171,7 @@
             echo '<td>' . $row['quantitate'] . '</td>';
             echo '<td>' . $row['description'] . '</td>';
             echo '<td><img src="photo/' . $row['product_image'] . '" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>';
+            echo '<td>' . $row['categories'] . '</td>';
             echo '<td>';
             echo '<a href="?action=edit&id=' . $row['id'] . '">Modifier</a> | ';
             echo '<a href="?action=delete&id=' . $row['id'] . '" onclick="return confirm(\'Voulez-vous vraiment supprimer ce produit?\')">Supprimer</a>';
@@ -150,7 +184,5 @@
     }
     ?>
 
-    <!-- Formulaire pour ajouter un produit -->
-   
 </body>
 </html>
