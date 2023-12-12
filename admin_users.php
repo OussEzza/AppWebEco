@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
 
         .box a {
             display: block;
-            background-color: #e74c3c; / 
+            background-color: #e74c3c;
             color: #fff;
             text-align: center;
             padding: 8px;
