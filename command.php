@@ -234,6 +234,18 @@ if (!isset($_SESSION['email'])) {
                 $resultUpdate = mysqli_query($conn, $queryUpdate);
 
                 $message = "La commande est validé avec succès!";
+                // Supposons que $products contient les détails de chaque produit dans le panier
+                foreach ($products as $product) {
+                    $productName = $product['product_name'];
+                    $quantityPurchased = $product['quantity'];
+
+                    // Requête pour mettre à jour la quantité du produit dans la table 'products'
+                    $queryUpdateQuantity = "UPDATE products 
+                            SET quantitate = quantitate - '$quantityPurchased'
+                            WHERE product_name = '$productName'";
+
+                    $resultUpdateQuantity = mysqli_query($conn, $queryUpdateQuantity);
+                }
 
                 $querySelect = "SELECT * FROM orders WHERE token = '$token'";
                 $resultSelect = mysqli_query($conn, $querySelect);
