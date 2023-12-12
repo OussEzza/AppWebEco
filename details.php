@@ -42,7 +42,8 @@ if (!isset($_SESSION['email'])) {
             echo '<a href="photo/' . $row['product_image'] . '" target="_blank""><img id="product-image" src="photo/' . $row['product_image'] . '" alt="' . $row['product_name'] . '" /></a>';
             echo '</span>';
             echo '<div class="description-container">';
-            echo '<h4>Description: </h4> <pre class="description">' . $row['description'] . '</pre>';
+            echo '<h4>Description: </h4> <p class="description">' . $row['description'] . '</p>';
+            echo '<h4>Caractéristiques :</h4> <pre class="description">' . $row['Caracteristiques'] . '</pre>';
             echo '</div>';
             echo '</div>';
             echo '<div class="info-container">';

@@ -154,106 +154,237 @@ if (!isset($_SESSION['email'])) {
         <section id="section1">
             <h2 class="h2section">Claviers</h2>
             <div class="product-grid">
-            <?php
-            $id = 1;
-            // Récupérer les produits depuis la base de données
-            $query = "SELECT * FROM products WHERE categories = 'Keyboards'";
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="product-details">';
-                    echo '<div class="image-container">';
-                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
-                    echo '</div>';
-                    echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
-                    echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
-                    echo '<p>Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
-                    echo '<div class="button-container">';
-                    echo '<form method="post" class="inline-form">';
-                    echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                    echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
-                    echo '</form>';
-                    echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $id . '">Voir les détails</a></button>';
-                    echo '</div>';
-                    echo '</div>';
-                    $id++;
+                <?php
+                $id = 1;
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'Keyboards'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p>Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post" class="inline-form">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $id . '">Voir les détails</a></button>';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
                 }
-            }
-            ?>
+                ?>
             </div>
         </section>
 
 
         <section id="section2">
             <h2 class="h2section">Écouteurs</h2>
-            <?php
+            <div class="product-grid">
+                <?php
 
-            // Récupérer les produits depuis la base de données
-            $query = "SELECT * FROM products WHERE categories = 'headphones'";
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                echo '<div class="product">';
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="product-details">';
-                    echo '<div class="image-container">';
-                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
-                    echo '</div>';
-                    echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
-                    echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
-                    echo '<p>Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
-                    echo '<div class="button-container">';
-                    echo '<form method="post">';
-                    echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                    echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
-                    echo '</form>';
-                    echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
-                    echo '</div>';
-                    echo '</div>';
-                    $id++;
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'headphones'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p>Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
                 }
-                echo '</div>';
-            }
 
-            ?>
+                ?>
+            </div>
         </section>
 
 
         <section id="section3">
             <h2 class="h2section">Souris</h2>
-            <?php
+            <div class="product-grid">
+                <?php
 
-            // Récupérer les produits depuis la base de données
-            $query = "SELECT * FROM products WHERE categories = 'mouses'";
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                echo '<div class="product">';
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="product-details">';
-                    echo '<div class="image-container">';
-                    echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
-                    echo '</div>';
-                    echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
-                    echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' $</p>';
-                    echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
-                    echo '<div class="button-container">';
-                    echo '<form method="post">';
-                    echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-                    echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
-                    echo '</form>';
-                    echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
-                    echo '</div>';
-                    echo '</div>';
-                    $id++;
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'mouses'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
                 }
-                echo '</div>';
-            }
+
+                ?>
+            </div>
+        </section>
 
 
+        <section id="section4">
+            <h2 class="h2section">Tapis de souris</h2>
+            <div class="product-grid">
+                <?php
+
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'tapis'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
+                }
+
+                ?>
+            </div>
+        </section>
 
 
+        <section id="section5">
+            <h2 class="h2section">Accessoires Streaming</h2>
+            <div class="product-grid">
+                <?php
 
-            ?>
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'streaming'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
+                }
 
+                ?>
+            </div>
+        </section>
+
+
+        <section id="section6">
+            <h2 class="h2section">Accessoires Streaming</h2>
+            <div class="product-grid">
+                <?php
+
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'console'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
+                }
+
+                ?>
+            </div>
+        </section>
+
+
+        <section id="section7">
+            <h2 class="h2section">Disques de jeux</h2>
+            <div class="product-grid">
+                <?php
+
+                // Récupérer les produits depuis la base de données
+                $query = "SELECT * FROM products WHERE categories = 'games'";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="product-details">';
+                        echo '<div class="image-container">';
+                        echo '<img class="product-image" src="photo/' . htmlspecialchars($row['product_image']) . '" alt="' . htmlspecialchars($row['product_name']) . '" />';
+                        echo '</div>';
+                        echo '<h4>' . htmlspecialchars($row['product_name']) . '</h4>';
+                        echo '<p class="price">Prix: ' . htmlspecialchars($row['price']) . ' MAD</p>';
+                        echo '<p id="errorMessage" class="quantity">Quantité: ' . htmlspecialchars($row['quantitate']) . '</p>';
+                        echo '<div class="button-container">';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+                        echo '<button class="addpanier" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
+                        echo '</form>';
+                        echo '<button class="affdetails"><a href="details.php?id=' . $id . '">Voir les détails</a></button>        ';
+                        echo '</div>';
+                        echo '</div>';
+                        $id++;
+                    }
+                }
+
+                ?>
+            </div>
         </section>
 
 
@@ -294,6 +425,7 @@ if (!isset($_SESSION['email'])) {
     </body>
 
     </html><!-- La page affiche les produits avec un bouton "Ajouter au panier" pour chaque produit -->
+
 <?php
 }
 ?>
