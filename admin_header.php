@@ -15,7 +15,8 @@ if(isset($message)){
 <link rel="stylesheet" href="admin_page.css">
 <header class="header">
     <div class="flex">
-        <a href="<?php echo $_SESSION['type'] === 'admin' ? 'admin_page.php' : 'home.php'; ?>" class="logo">Admin<span>Panel</span></a>
+    <a href="admin_page.php" class="logo">Admin<span>Panel</span></a>
+
 
         <nav class="navbar">
             <a href="admin_page.php">Accueil</a>
@@ -25,10 +26,9 @@ if(isset($message)){
             <a href="admin_contacts.php">Messages</a>
         </nav>
 
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-        </div>
+        <div class="category-logo">
+                <a href="profil_admin.php "><i class="fas fa-user"></i></a>
+            </div>
     </div>
 </header>
 <body>
