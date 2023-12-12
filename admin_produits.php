@@ -1,3 +1,4 @@
+
 <!-- manage_products.php -->
 <!DOCTYPE html>
 <html lang="fr">
