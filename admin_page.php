@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,11 +7,50 @@
     <title>Panneau d’administration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="admin_page.css">
+    <style>
+      /* Exemple de styles dans admin_page.css */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.DASHBOARD {
+    padding: 20px;
+}
+
+.title {
+    color: #333;
+    text-align: center;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.box {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.box h3 {
+    color: #333;
+}
+
+.box p {
+    color: #777;
+}
+
+    </style>
 </head>
 <body>
 
 <?php include 'admin_header.php'; ?>
-
+<?php
+include('connection.php'); // Assurez-vous que le chemin est correct
+?>
 <section class="DASHBOARD">
 
    <h1 class="title">TABLEAU DE BORD</h1>
@@ -21,35 +58,8 @@
 
    <div class="box-container">
 
-      <div class="box">
-         <?php
-            $total_pendings = 0;
-            $select_pending = mysqli_query($conn, "SELECT * FROM `products` WHERE payment_status = 'pending'")or die('query failed');
-            if(mysqli_num_rows($select_pending) > 0){
-               while($fetch_pendings = mysqli_fetch_assoc($select_pending)){
-                  $total_price = $fetch_pendings['total_price'];
-                  $total_pendings += $total_price;
-               };
-            };
-         ?>
-         <h3>$<?php echo $total_pendings; ?>/-</h3>
-         <p>total pendings</p>
-      </div>
 
-      <div class="box">
-         <?php
-            $total_completed = 0;
-            $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
-            if(mysqli_num_rows($select_completed) > 0){
-               while($fetch_completed = mysqli_fetch_assoc($select_completed)){
-                  $total_price = $fetch_completed['total_price'];
-                  $total_completed += $total_price;
-               };
-            };
-         ?>
-         <h3>$<?php echo $total_completed; ?>/-</h3>
-         <p>completed payments</p>
-      </div>
+     
 
       <div class="box">
          <?php 
@@ -57,7 +67,7 @@
             $number_of_orders = mysqli_num_rows($select_orders);
          ?>
          <h3><?php echo $number_of_orders; ?></h3>
-         <p>order placed</p>
+         <p>Total des commandes</p>
       </div>
 
       <div class="box">
@@ -66,25 +76,25 @@
             $number_of_products = mysqli_num_rows($select_products);
          ?>
          <h3><?php echo $number_of_products; ?></h3>
-         <p>products added</p>
+         <p>Produits ajoutés</p>
       </div>
 
       <div class="box">
          <?php 
-            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'user'") or die('query failed');
+            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE type = 'user'") or die('query failed');
             $number_of_users = mysqli_num_rows($select_users);
          ?>
          <h3><?php echo $number_of_users; ?></h3>
-         <p>normal users</p>
+         <p>Normale Utilisateurs</p>
       </div>
 
       <div class="box">
          <?php 
-            $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'admin'") or die('query failed');
+            $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE type = 'admin'") or die('query failed');
             $number_of_admins = mysqli_num_rows($select_admins);
          ?>
          <h3><?php echo $number_of_admins; ?></h3>
-         <p>admin users</p>
+         <p>Utilisateurs Admin</p>
       </div>
 
       <div class="box">
@@ -93,18 +103,23 @@
             $number_of_account = mysqli_num_rows($select_account);
          ?>
          <h3><?php echo $number_of_account; ?></h3>
-         <p>total accounts</p>
+         <p>Totals des comptes</p>
       </div>
-
       <div class="box">
-         <?php 
-            $select_messages = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
-            $number_of_messages = mysqli_num_rows($select_messages);
+         <?php
+            $total_completed = 0;
+            $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders`  ") or die('query failed');
+            if(mysqli_num_rows($select_completed) > 0){
+               while($fetch_completed = mysqli_fetch_assoc($select_completed)){
+                  $total_price = $fetch_completed['total_price'];
+                  $total_completed += $total_price;
+               };
+            };
          ?>
-         <h3><?php echo $number_of_messages; ?></h3>
-         <p>new messages</p>
+         <h3><?php echo $total_completed; ?>$</h3>
+         <p>Paiements effectués</p>
       </div>
-
+     
    </div>
 
 </section>

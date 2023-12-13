@@ -136,8 +136,8 @@
 <link rel="stylesheet" href="admin_page.css">
 <header class="header">
     <div class="flex">
-        <a href="<?php echo $_SESSION['type'] === 'admin' ? 'admin_page.php' : 'home.php'; ?>" class="logo">Admin<span>Panel</span></a>
-
+    <a href="admin_page.php" class="logo">Admin<span>Panel</span></a>
+       
         <nav class="navbar">
             <a href="admin_page.php">Accueil</a>
             <a href="admin_produits.php">Produits</a>
