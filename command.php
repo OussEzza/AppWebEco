@@ -70,7 +70,7 @@ if (!isset($_SESSION['email'])) {
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
 
-            $mail->setFrom('ezzahrios@gmail.com', 'Gaming Planet');
+            $mail->setFrom('EZZAHRIos@gmail.com', 'Gaming Planet');
             $mail->addAddress($rowUser['Email']);
 
             $mail->isHTML(true);
@@ -130,13 +130,13 @@ if (!isset($_SESSION['email'])) {
         <?php
         $message = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase-final'])) {
-            $queryOrders = "SELECT token FROM orders WHERE user_id = '$userid'";
+            $queryOrders = "SELECT token FROM orders WHERE user_id = '$userid' ORDER BY id DESC LIMIT 1";            ;
             $resultOrders = mysqli_query($conn, $queryOrders);
             $rowOrders = mysqli_fetch_assoc($resultOrders);
             $token = $rowOrders['token'];
-            $verificationCode = $_POST['code-verification']; // ou récupérez-le d'où vous l'obtenez
+            $verificationCodeInput = $_POST['code-verification']; // ou récupérez-le d'où vous l'obtenez
 
-            if ($token === $verificationCode) {
+            if ($token === $verificationCodeInput) {
                 $mail = new PHPMailer(true); // Créer une instance de PHPMailer
                 // Configuration et envoi de l'e-mail
                 $mail->isSMTP();
@@ -270,8 +270,6 @@ if (!isset($_SESSION['email'])) {
                     if ($resultInsert) {
                         $queryDelete = "DELETE FROM panier WHERE user_id = '$userId'";
                         $resultDelete = mysqli_query($conn, $queryDelete);
-                        // Supprimez la commande de la table orders si nécessaire
-                        // Exemple : DELETE FROM orders WHERE token = '$token';
                     } else {
                         // Gérer l'échec de l'insertion dans l'historique
                     }

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('navbar.php');
 if (!isset($_SESSION['email'])) {
     header('location:login.php');
 } else {

@@ -1,0 +1,75 @@
+/* Couleurs */
+body {
+    background-color: #ffffff; /* Blanc */
+    color: #000000; /* Noir */
+}
+
+footer {
+    background-color: #008000; /* Vert */
+    color: #ffffff; /* Blanc */
+    padding: 20px;
+}
+
+/* Sections du footer */
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.newsletter input[type="email"],
+.newsletter button {
+    padding: 8px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 5px;
+}
+
+.social-media ul {
+    list-style: none;
+    padding: 0;
+}
+
+.social-media ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.legal ul {
+    list-style: none;
+    padding: 0;
+}
+
+.legal ul li {
+    margin-bottom: 5px;
+}
+
+.payment-options p {
+    margin-bottom: 5px;
+}
+
+.customer-support a {
+    color: #ffffff; /* Blanc */
+    text-decoration: none;
+}
+
+.customer-support a:hover {
+    text-decoration: underline;
+}
+
+.gift-cards p,
+.about-us p {
+    margin-bottom: 5px;
+}
+
+.security-badge img {
+    max-width: 50px;
+    height: auto;
+}

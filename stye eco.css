@@ -45,15 +45,7 @@ input[type="search"] {
   font-size: 16px;
 }
 
-#submitsearch {
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 3px 3px;
-  cursor: pointer;
-  margin-left: 6px;
-}
+
 
 nav ul {
   list-style-type: none;
@@ -72,7 +64,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ffcc00;
+  color: #0dff00;
 }
 
 .slideshow {
@@ -123,7 +115,7 @@ nav ul li a:hover {
 }
 
 .compte:hover {
-  color: #ffcc00;
+  color: #0dff00;
   cursor: pointer;
 }
 

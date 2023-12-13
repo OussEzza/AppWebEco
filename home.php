@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('navbar.php');
 if (!isset($_SESSION['email'])) {
     header('location:login.php');
 } else {
@@ -12,70 +13,37 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="stye eco.css" />
-        <link rel="stylesheet" href="product.css">
+        <link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <title>ShoppingPlanet</title>
+        <style>
+            .slideshow {
+                max-width: 100%;
+                position: relative;
+                margin: auto;
+            }
+
+            .slides {
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: auto;
+            }
+        </style>
     </head>
 
     <body>
-        <header>
-            <div class="category-logo">
-                <a href="profil.php"><i class="fas fa-user"></i></a>
-            </div>
-            <div class="logo">
-                <h1><a href="home.php">ShoppingPlanet</a></h1>
-            </div>
-            <div class="search-box">
-                <form>
-                    <input type="search" id="search" name="search" placeholder="Rechercher des produits" />
-                    <button id="submitsearch" type="submit" class="button" name="search">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="home.php"><i class="fas fa-home"></i> Accueil</a>
-                    </li>
-                    <li>
-                        <a href="produit1.php"><i class="fas fa-shopping-bag"></i> Produits</a>
-                        <ul class="submenu">
-                            <li><a href="produit1.php#section1">Claviers</a></li>
-                            <li><a href="produit1.php#section2">Écouteurs</a></li>
-                            <li><a href="produit1.php#section3">Souris</a></li>
-                            <!-- Ajoutez autant d'options que nécessaire -->
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="panier.php"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                        <span id="nombreProduitsPanier" class="cart-item-count"></span>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-info-circle"></i> À Propos</a>
-                    </li>
-                    <li>
-                        <a href="login.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-                    </li>
-                    <div class="compte">
-                        <a href="logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                <polyline points="16 17 21 12 16 7"></polyline>
-                                <line x1="21" y1="12" x2="9" y2="12"></line>
-                            </svg></i></a>
-                    </div>
-                </ul>
-            </nav>
-        </header>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+        <!-- <div class="slideshow">
+            <img class="slides" src="photo/G1.jpg" alt="Image 1">
+            <img class="slides" src="photo/G2.jpg" alt="Image 2">
+        </div> -->
 
 
 
         <?php
 
-        // obtenir_nombre_produits_panier.php
-        require_once ('connection.php');
+        require_once('connection.php');
         $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
 
         $query = "SELECT SUM(quantity) AS total_items FROM panier WHERE user_id = '$currentUserId'";
@@ -89,15 +57,101 @@ if (!isset($_SESSION['email'])) {
         }
         ?>
 
-        <a href="mail.php">go to send mail</a>
 
-        <script>
+        <footer>
+            <div class="footer-navigation">
+                <ul>
+                    <li><a href="home.php">Accueil</a></li>
+                    <li><a href="produit1.php">Produits</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="newsletter">
+                <h3>Inscription à la newsletter</h3>
+                <form action="votre-script-d-inscription-newsletter.php" method="post">
+                    <input type="email" name="email" placeholder="Entrez votre e-mail" required>
+                    <button type="submit">S'abonner</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <h3>Coordonnées</h3>
+                <p>Email: contact@votreentreprise.com</p>
+                <p>Téléphone: +XX XXX XXX XXX</p>
+                <p>Adresse: 123 Rue Principale, Ville, Pays</p>
+            </div>
+
+            <div class="social-media">
+                <h3>Suivez-nous</h3>
+                <ul>
+                    <li><a href="lien-vers-facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="lien-vers-twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="lien-vers-instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="legal">
+                <ul>
+                    <li><a href="/politique-de-confidentialite">Politique de confidentialité</a></li>
+                    <li><a href="/conditions-d-utilisation">Conditions d'utilisation</a></li>
+                    <li><a href="/politique-de-retour">Politique de retour</a></li>
+                </ul>
+            </div>
+
+            <div class="payment-options">
+                <h3>Paiement sécurisé</h3>
+                <p>Nous acceptons : Visa, Mastercard, PayPal</p>
+            </div>
+
+            <div class="customer-support">
+                <h3>Assistance client</h3>
+                <p><a href="/assistance">Besoin d'aide? Contactez-nous!</a></p>
+            </div>
+
+            <div class="gift-cards">
+                <h3>Cartes-cadeaux</h3>
+                <p>Offrez du shopping avec nos cartes-cadeaux!</p>
+            </div>
+
+            <div class="about-us">
+                <h3>À propos de nous</h3>
+                <p>Une brève description de votre entreprise et de sa mission.</p>
+            </div>
+
+            <div class="security-badge">
+                <!-- Ajoutez ici des images ou des badges de sécurité -->
+                <img src="votre-badge-securite.png" alt="Badge de sécurité">
+            </div>
+        </footer>
+
+
+        <!-- <script>
+            let slideIndex = 0;
+            carousel();
+
+            function carousel() {
+                let i;
+                const slides = document.getElementsByClassName("slides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {
+                    slideIndex = 1;
+                }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(carousel, 3000); // Change d'image toutes les 3 secondes (3000 millisecondes)
+            }
+
+
             // JavaScript ici pour utiliser le résultat PHP, par exemple :
-            var itemCount = <?php echo $totalItems; ?>;
+            var itemCount = <?php //echo $totalItems; ?>;
             document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('nombreProduitsPanier').innerText = itemCount;
             });
-        </script>
+        </script> -->
 
     </body>
 

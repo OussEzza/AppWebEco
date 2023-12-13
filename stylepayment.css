@@ -48,12 +48,17 @@ body {
 
 .divproduct {
   width: 250px;
+  max-height: 300px;
   margin: 20px;
   padding: 10px;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.divproduct h4{
+  margin-bottom: 20px;
 }
 
 .divpanier {

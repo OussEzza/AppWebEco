@@ -28,8 +28,6 @@ if (!isset($_SESSION['email'])) {
             <div class="search-box">
                 <form method="GET" action="produit1.php">
                     <input type="search" id="search" name="search" placeholder="Rechercher des produits" />
-                    <button id="submitsearch" type="submit" class="button" name="search">
-                        <i class="fas fa-search"></i>
                     </button>
                 </form>
             </div>
@@ -41,12 +39,13 @@ if (!isset($_SESSION['email'])) {
                     <li>
                         <a href="produit1.php"><i class="fas fa-shopping-bag"></i> Produits</a>
                         <ul class="submenu">
-                            <li><a href="#section1">Claviers</a></li>
-                            <hr>
-                            <li><a href="#section2">Écouteurs</a></li>
-                            <hr>
-                            <li><a href="#section3">Souris</a></li>
-                            <!-- Ajoutez autant d'options que nécessaire -->
+                            <li><a href="produit1.php#section1">Claviers</a></li>
+                            <li><a href="produit1.php#section2">Écouteurs</a></li>
+                            <li><a href="produit1.php#section3">Souris</a></li>
+                            <li><a href="produit1.php#section4">Tapis de souris</a></li>
+                            <li><a href="produit1.php#section5">Accessoires streaming</a></li>
+                            <li><a href="produit1.php#section6">PlayStation</a></li>
+                            <li><a href="produit1.php#section7">Jeux</a></li>
                         </ul>
                     </li>
                     <li>
@@ -56,9 +55,7 @@ if (!isset($_SESSION['email'])) {
                     <li>
                         <a href="#"><i class="fas fa-info-circle"></i> À Propos</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-                    </li>
+                    
                     <li>
                         <div class="compte">
                             <a href="logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
@@ -173,7 +170,7 @@ if (!isset($_SESSION['email'])) {
 
 
         ?>
-        <section id="section1">
+        <section id="section1" class="section">
             <h2 class="h2section">Claviers</h2>
             <div class="product-grid">
                 <?php
@@ -204,7 +201,7 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section2">
+        <section id="section2" class="section">
             <h2 class="h2section">Écouteurs</h2>
             <div class="product-grid">
                 <?php
@@ -237,7 +234,7 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section3">
+        <section id="section3" class="section">
             <h2 class="h2section">Souris</h2>
             <div class="product-grid">
                 <?php
@@ -270,7 +267,7 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section4">
+        <section id="section4" class="section">
             <h2 class="h2section">Tapis de souris</h2>
             <div class="product-grid">
                 <?php
@@ -303,7 +300,7 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section5">
+        <section id="section5" class="section">
             <h2 class="h2section">Accessoires Streaming</h2>
             <div class="product-grid">
                 <?php
@@ -336,8 +333,8 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section6">
-            <h2 class="h2section">Accessoires Streaming</h2>
+        <section id="section6" class="section">
+            <h2 class="h2section">PlayStation</h2>
             <div class="product-grid">
                 <?php
 
@@ -369,7 +366,7 @@ if (!isset($_SESSION['email'])) {
         </section>
 
 
-        <section id="section7">
+        <section id="section7" class="section">
             <h2 class="h2section">Jeux</h2>
             <div class="product-grid">
                 <?php
@@ -403,32 +400,46 @@ if (!isset($_SESSION['email'])) {
 
 
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.getElementById('search');
+                const productSections = document.querySelectorAll('.product-grid');
+                const productNames = [];
+
+                // Stocker les noms des produits dans un tableau
+                productSections.forEach(function(section) {
+                    const products = section.querySelectorAll('.product-details');
+
+                    products.forEach(function(product) {
+                        const productName = product.querySelector('h4');
+                        if (productName) {
+                            productNames.push(productName.innerText.toLowerCase());
+                        }
+                    });
+                });
+
+                // Fonction de recherche
+                searchInput.addEventListener('input', function(event) {
+                    const searchText = event.target.value.toLowerCase();
+
+                    productSections.forEach(function(section, sectionIndex) {
+                        const products = section.querySelectorAll('.product-details');
+
+                        products.forEach(function(product, productIndex) {
+                            const displayStyle = productNames[(sectionIndex * products.length) + productIndex].includes(searchText) ? 'block' : 'none';
+                            product.style.display = displayStyle;
+                        });
+                    });
+                });
+            });
+
+
+
             // JavaScript ici pour utiliser le résultat PHP, par exemple :
             var itemCount = <?php echo $totalItems; ?>;
             document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('nombreProduitsPanier').innerText = itemCount;
             });
 
-
-            document.addEventListener('DOMContentLoaded', function() {
-                const searchInput = document.getElementById('search');
-                const productSections = document.querySelectorAll('.product');
-
-                searchInput.addEventListener('input', function(event) {
-                    const searchText = event.target.value.toLowerCase();
-
-                    productSections.forEach(function(section) {
-                        const products = section.querySelectorAll('.product-details');
-
-                        products.forEach(function(product) {
-                            const productName = product.querySelector('h4').innerText.toLowerCase();
-                            const displayStyle = productName.includes(searchText) ? 'block' : 'none';
-
-                            product.style.display = displayStyle;
-                        });
-                    });
-                });
-            });
 
             document.addEventListener('', function() {
                 const addpanierbtn = document.getElementsByClassName('addpanier');

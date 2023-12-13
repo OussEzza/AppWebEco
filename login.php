@@ -26,39 +26,44 @@
     <div class="container">
         <div class="card mx-auto p-4 custom-form">
             <div class="card-body">
-            <?php
-session_start();
-include("connection.php");
+                <?php
+                session_start();
+                include("connection.php");
+                $motDePass = "";
+                if (isset($_POST['submit'])) {
+                    $email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-if (isset($_POST['submit'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+                    $result = mysqli_query($conn, "SELECT * FROM users WHERE Email='$email'") or die(mysqli_error($conn));
+                    $row = mysqli_fetch_assoc($result);
 
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE Email='$email'") or die(mysqli_error($conn));
-    $row = mysqli_fetch_assoc($result);
+                    if ($row) { // Vérifie si la requête a retourné des données
+                        $motDePass = $row['motDePasse'];
+                        if (password_verify($password, $motDePass)) {
+                            $_SESSION['id'] = $row['Id'];
+                            $_SESSION['email'] = $row['Email'];
+                            $_SESSION['type'] = $row['type']; // Ajout de la clé "type" dans la session
 
-    $motDePass = $row['motDePasse'];
-
-    if (password_verify($password, $motDePass)) {
-        $_SESSION['id'] = $row['Id'];
-        $_SESSION['email'] = $row['Email'];
-        $_SESSION['type'] = $row['type']; // Ajout de la clé "type" dans la session
-
-        if ($row['type'] === 'admin') {
-            header("Location: admin_header.php");
-        } else {
-            header("Location: home.php");
-        }
-        exit();
-    } else {
-        echo "<div class='alert alert-danger'>
+                            if ($row['type'] === 'admin') {
+                                header("Location: admin_header.php");
+                            } else {
+                                header("Location: home.php");
+                            }
+                            exit();
+                        } else {
+                            echo "<div class='alert alert-danger'>
             <p>Adresse e-mail ou mot de passe incorrect</p>
         </div>";
-    }
-}
-?>
-     <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
-               <form action="" method="post">
+                        }
+                    } else {
+                        echo "<div class='alert alert-danger'>
+        <p>Adresse e-mail ou mot de passe incorrect</p>
+    </div>";
+                    }
+                }
+                ?>
+                <h1 class="card-title text-center mb-4 gradient-title">CONNEXION</h1>
+                <form action="" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" name="email" id="email" class="form-control" autocomplete="off" required>
