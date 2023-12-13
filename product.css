@@ -77,6 +77,7 @@
 }
 
 button:hover {
+  background-color: #45d62e;
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre plus subtile pour le survol */
 }
@@ -116,7 +117,7 @@ button:active {
 }
 /* Style du bouton "Ajouter au Panier" */
 .addpanier {
-  background-color: #45d62e;
+  background-color: #0dff00;
   color: white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

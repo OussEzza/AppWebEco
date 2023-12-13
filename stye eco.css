@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
 * {
   font-family: Poppins;
@@ -33,6 +33,20 @@ header {
   align-items: center;
 }
 
+.button {
+  background-color: #0dff00;
+  color: black;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #0dff00;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #45d62e;
+}
+
 form {
   display: flex;
 }
@@ -44,8 +58,6 @@ input[type="search"] {
   border-radius: 3px;
   font-size: 16px;
 }
-
-
 
 nav ul {
   list-style-type: none;

@@ -276,6 +276,10 @@ if (!isset($_SESSION['email'])) {
                 } else {
                     // Gérer le cas où la commande n'est pas trouvée dans la table orders
                 }
+                echo '
+                   <script>
+                        setTimeout(function(){window.location.href = "home.php";}, 2500);
+                   </script>';
             } else {
                 $message = "Le code de vérification est incorrect. Veuillez réessayer.";
             }
