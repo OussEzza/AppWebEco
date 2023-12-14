@@ -46,7 +46,7 @@
                             $_SESSION['type'] = $row['type']; 
 
                             if ($row['type'] === 'admin') {
-                                header("Location: admin_header.php");
+                                header("Location: admin_page.php");
                             } else {
                                 header("Location: home.php");
                             }
