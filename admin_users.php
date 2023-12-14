@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
     <style>
         body {
             font-family: "Arial", sans-serif;
-            background: linear-gradient(to right, #3498db, #2ecc71);  
+            background: linear-gradient(to right,  #214a1d, #2ecc71);  
             color: #fff;
             margin: 0;
             padding: 0;

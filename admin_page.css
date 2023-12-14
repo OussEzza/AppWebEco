@@ -47,7 +47,7 @@ body {
     font-size: 1rem;
 }
 .navbar a:hover{
-    color:yellow;
+    color:rgb(0, 255, 136);
 }
 
 .icons {

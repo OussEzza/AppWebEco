@@ -7,42 +7,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Panneau d’administration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="admin_page.css">
     <style>
-        /* Exemple de styles dans admin_page.css */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #3498db;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
         }
 
         .DASHBOARD {
             padding: 20px;
+            background-color: #2c3e50;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
         }
 
         .title {
-            color: #333;
+            color: #2ecc71;
             text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .box-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
-            margin-top: 20px;
         }
 
         .box {
-            background-color: #f4f4f4;
+         background-color: #87ceeb;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
+            margin: 10px;
+            flex: 1 1 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: scaleIn 1s ease-in-out;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            text-decoration: none; /* Retirer le soulignement */
+            color: #ecf0f1; /* Couleur du texte par défaut */
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            color: green;
         }
 
         .box h3 {
-            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
         }
 
         .box p {
-            color: #777;
+            margin: 0;
+            font-size: 16px;
         }
 
         @keyframes fadeIn {
@@ -55,8 +79,14 @@
             }
         }
 
-        .animated-box {
-            animation: fadeIn 1s ease-in-out;
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
@@ -64,61 +94,60 @@
 <body>
 
     <?php include 'admin_header.php'; ?>
-    <?php
-    include('connection.php'); // Assurez-vous que le chemin est correct
-    ?>
+    <?php include('connection.php'); ?>
+
     <section class="DASHBOARD">
 
         <h1 class="title">TABLEAU DE BORD</h1>
 
         <div class="box-container">
 
-            <div class="box animated-box">
+            <a href="admin_commande.php" class="box">
                 <?php
                 $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
                 $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
                 <h3><?php echo $number_of_orders; ?></h3>
                 <p>Total des commandes</p>
-            </div>
+            </a>
 
-            <div class="box animated-box">
+            <a href="admin_produits.php" class="box">
                 <?php
                 $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
                 $number_of_products = mysqli_num_rows($select_products);
                 ?>
                 <h3><?php echo $number_of_products; ?></h3>
                 <p>Produits ajoutés</p>
-            </div>
+            </a>
 
-            <div class="box animated-box">
+            <a href="admin_users.php" class="box">
                 <?php
                 $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE type = 'user'") or die('query failed');
                 $number_of_users = mysqli_num_rows($select_users);
                 ?>
                 <h3><?php echo $number_of_users; ?></h3>
-                <p>Normale Utilisateurs</p>
-            </div>
+                <p>Utilisateurs normaux</p>
+            </a>
 
-            <div class="box animated-box">
+            <a href="admin_users.php" class="box">
                 <?php
                 $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE type = 'admin'") or die('query failed');
                 $number_of_admins = mysqli_num_rows($select_admins);
                 ?>
                 <h3><?php echo $number_of_admins; ?></h3>
                 <p>Utilisateurs Admin</p>
-            </div>
+            </a>
 
-            <div class="box animated-box">
+            <a href="admin_users.php" class="box">
                 <?php
                 $select_account = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
                 $number_of_account = mysqli_num_rows($select_account);
                 ?>
                 <h3><?php echo $number_of_account; ?></h3>
                 <p>Totals des comptes</p>
-            </div>
+            </a>
 
-            <div class="box animated-box">
+            <a href="admin_produits.php"class="box">
                 <?php
                 $total_completed = 0;
                 $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders`  ") or die('query failed');
@@ -131,35 +160,20 @@
                 ?>
                 <h3><?php echo $total_completed; ?>$</h3>
                 <p>Paiements effectués</p>
-            </div>
-
-            <div class="box animated-box">
-                <canvas id="orderChart"></canvas>
-            </div>
+            </a>
 
         </div>
 
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/admin_script.js"></script>
 
     <script>
-        var orderChart = new Chart(document.getElementById('orderChart').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Label1', 'Label2', 'Label3'],
-                datasets: [{
-                    label: 'Orders',
-                    data: [/* Your data here */],
-                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
+        function handleBoxClick(boxType) {
+            alert("Clicked on " + boxType);
+             
+        }
     </script>
 
 </body>
