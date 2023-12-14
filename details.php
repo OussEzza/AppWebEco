@@ -12,7 +12,8 @@ if (!isset($_SESSION['email'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Détails du Produit</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Détails du Produit - GamingPlanet</title>
         <link rel="stylesheet" href="styledetails.css">
     </head>
 

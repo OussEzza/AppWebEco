@@ -13,7 +13,8 @@ if (!isset($_SESSION['email'])) {
         <link rel="stylesheet" href="stye eco.css">
         <link rel="stylesheet" href="product.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-        <title>GamingPlanet</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Produits - GamingPlanet</title>
     </head>
 
     <body>

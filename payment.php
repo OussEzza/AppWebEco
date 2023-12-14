@@ -13,7 +13,8 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylepayment.css">
-        <title>Payment</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Payment - GamingPlanet</title>
     </head>
 
     <body>

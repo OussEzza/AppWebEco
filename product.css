@@ -70,7 +70,7 @@
   text-decoration: underline;
 }
 
-button:hover {
+.addpanier:hover {
   background-color: #45d62e;
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
