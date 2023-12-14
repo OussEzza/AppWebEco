@@ -81,16 +81,17 @@ input[type="number"] {
 }
 
 .btnback {
-  position: fixed;
+  /* position: fixed; */
   bottom: 20px;
   left: 20px;
-  background-color: #45d62e;
-  color: black;
+  background-color: #0dff00;
   padding: 10px;
   text-decoration: none;
   border-radius: 5px;
   display: inline-block;
   z-index: 1;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
 .btnback a {
@@ -111,6 +112,7 @@ input[type="number"] {
 }
 
 .btnback:hover {
+  background-color: #45d62e;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -184,7 +186,6 @@ input[type="number"] {
   transition: opacity 0.5s ease; /* Ajoute une transition douce */
 }
 
-/* styledetails.css */
 
 /* Styles pour le conteneur du tableau */
 .total-panier {
@@ -194,7 +195,8 @@ input[type="number"] {
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  float: right; /* positionnement à droite */
+  right:auto;
+  /* float: right;  */
   justify-content: space-between;
 }
 
@@ -220,7 +222,7 @@ input[type="number"] {
 
 /* Styles pour le bouton */
 .gopayment {
-  background-color: #45d62e; /* couleur verte */
+  background-color: #0dff00; /* couleur verte */
   color: white;
   border: none;
   padding: 15px 30px; /* ajustement de la taille */
@@ -233,12 +235,12 @@ input[type="number"] {
   margin-top: 20px;
   transition: background-color 0.3s ease;
   font-size: 14px; /* taille du texte */
-  font-family: Arial, sans-serif; /* police du texte */
   font-weight: bold; /* poids du texte */
   text-transform: uppercase; /* en majuscules */
   position: relative; /* position relative */
 }
 
 .gopayment:hover {
+  background-color: #45d62e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

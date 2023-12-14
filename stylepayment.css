@@ -32,7 +32,7 @@ body {
 
 .column.right {
   flex: 1;
-  max-width: 30%;
+  max-width: 35%;
   height: 88vh;
   position: relative;
   padding-bottom: 50px;
@@ -69,7 +69,7 @@ body {
 }
 
 .imgpanier {
-  border: 1px solid #45d62e;
+  border: 1px solid #0dff00;
   max-width: 100px;
   height: auto;
   margin-bottom: 10px;
@@ -82,7 +82,7 @@ body {
 
 .price {
   font-weight: bold;
-  color: #45d62e;
+  color: #0dff00;
   margin-bottom: 5px;
   margin-right: 10px;
 }
@@ -90,7 +90,7 @@ body {
 .total-amount {
   font-size: 24px;
   font-weight: bold;
-  color: #45d62e;
+  color: #0dff00;
   text-align: center;
   margin-top: 20px;
 }
@@ -99,7 +99,7 @@ body {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #45d62e;
+  background-color: #0dff00;
   color: black;
   padding: 10px 20px;
   border-radius: 5px;
@@ -113,6 +113,7 @@ body {
 }
 
 .btnback:hover {
+  background-color: #45d62e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 /* Style de la colonne de droite */
@@ -172,7 +173,7 @@ h1 {
 }
 
 .gopayment {
-  background-color: #45d62e; /* couleur verte */
+  background-color: #0dff00; /* couleur verte */
   color: white;
   border: none;
   padding: 15px 30px; /* ajustement de la taille */
@@ -192,5 +193,6 @@ h1 {
 }
 
 .gopayment:hover {
+  background-color: #45d62e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

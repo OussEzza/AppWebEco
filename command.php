@@ -130,7 +130,7 @@ if (!isset($_SESSION['email'])) {
         <?php
         $message = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase-final'])) {
-            $queryOrders = "SELECT token FROM orders WHERE user_id = '$userid' ORDER BY id DESC LIMIT 1";            ;
+            $queryOrders = "SELECT * FROM orders WHERE user_id = '$userid' ORDER BY id DESC LIMIT 1";;
             $resultOrders = mysqli_query($conn, $queryOrders);
             $rowOrders = mysqli_fetch_assoc($resultOrders);
             $token = $rowOrders['token'];
@@ -160,18 +160,31 @@ if (!isset($_SESSION['email'])) {
                 $body = '
                         <html>
                         <head>
-                            <title>Confirmation de votre achat</title>
+                            <title>Facture de votre achat</title>
                         </head>
                         <body>
+                            <div class="header" style="
+                                background-color: black;
+                                color: #0dff00;
+                                width: 100%;
+                                height: 40px;
+                                padding: 10px;
+                                font-size: 25px;
+                                font-weight: bold;
+                                text-align: center;
+                            ">GamingPlanet</div>
                             <p>Bonjour ' . $rowUser['Username'] . ',</p>
-                            <p>Merci pour votre achat sur notre boutique en ligne.</p>
+                            <p>Merci pour votre achat sur notre boutique en ligne <b>GamingPlanet</b>.</p>
                             <p>Voici un récapitulatif de votre commande :</p>
+                            <p>La date de validation de la commande : '. $rowOrders['Purchased_on'] .'</p>
+                            <p>Les produits que vous avez achete avec lors prix :</p>
                             <table cellspacing="0" style="width:100%; border: 1px solid #ccc;">
                                 <thead>
                                     <tr style="background-color: #f2f2f2;">
                                         <th style="padding: 10px; border: 1px solid #ccc;">Produit</th>
-                                        <th style="padding: 10px; border: 1px solid #ccc;">Prix</th>
+                                        <th style="padding: 10px; border: 1px solid #ccc;">prix de chaque produit</th>
                                         <th style="padding: 10px; border: 1px solid #ccc;">Quantité</th>
+                                        <th style="padding: 10px; border: 1px solid #ccc;">Prix total</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -182,8 +195,9 @@ if (!isset($_SESSION['email'])) {
                     $body .= '
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid #ccc;">' . $product['product_name'] . '</td>
-                                        <td style="padding: 10px; border: 1px solid #ccc;">' . $productTotal . '</td>
+                                        <td style="padding: 10px; border: 1px solid #ccc;">' . $product['price'] . '</td>
                                         <td style="padding: 10px; border: 1px solid #ccc;">' . $product['quantity'] . '</td>
+                                        <td style="padding: 10px; border: 1px solid #ccc;">' . $productTotal . '</td>
                                     </tr>';
                     $totalAmount += $productTotal;
                 }

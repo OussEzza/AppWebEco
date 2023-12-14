@@ -51,7 +51,7 @@ if (!isset($_SESSION['email'])) {
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="photo/Sl1.jpg" alt="Image 1"></div>
                 <div class="swiper-slide"><img src="photo/Sl4.jpg" alt="Image 2"></div>
-                <div class="swiper-slide"><img src="photo/Sl3.jpg" alt="Image 3"></div>
+                <!-- <div class="swiper-slide"><img src="photo/Sl3.jpg" alt="Image 3"></div> -->
                 <!-- Ajoutez autant de diapositives que nécessaire -->
             </div>
             <div class="swiper-pagination"></div>
