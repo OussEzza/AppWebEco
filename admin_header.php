@@ -23,7 +23,7 @@ if(isset($message)){
             <a href="admin_produits.php">Produits</a>
             <a href="admin_commande.php">Commandes</a>
             <a href="admin_users.php">Utilisateurs</a>
-            <a href="admin_contacts.php">Messages</a>
+            <a href="admin_contact.php">Messages</a>
         </nav>
 
         <div class="category-logo">
