@@ -9,7 +9,7 @@ if (!isset($_SESSION['email'])) {
 } else {
    $user_id = $_SESSION['id'];
 
-require_once ('navbar.php');
+   require_once('navbar.php');
 
    if (isset($_POST['send'])) {
 
@@ -21,10 +21,10 @@ require_once ('navbar.php');
       $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
 
       if (mysqli_num_rows($select_message) > 0) {
-         $message[] = 'message déjà envoyé !';
+         $messages[] = 'message déjà envoyé !';
       } else {
          mysqli_query($conn, "INSERT INTO `message`(user_id, name, email, number, message) VALUES('$user_id', '$name', '$email', '$number', '$msg')") or die('query failed');
-         $message[] = 'message envoyé avec succès!';
+         $messages[] = 'message envoyé avec succès!';
       }
 
       if (isset($messages)) {
@@ -55,19 +55,14 @@ require_once ('navbar.php');
       <section id="contact">
          <form action="" method="post">
             <h3>say something!</h3>
-            <input type="text" name="name" required placeholder="enter your name" class="box">
-            <input type="email" name="email" required placeholder="enter your email" class="box">
-            <input type="number" name="number" required placeholder="enter your number" class="box">
-            <textarea name="message" id="box" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
+            <input type="text" name="name" required placeholder="entrer votre nom" class="box">
+            <input type="email" name="email" required placeholder="entrer votre email" class="box">
+            <input type="number" name="number" required placeholder="entrer votre numéro" class="box">
+            <textarea name="message" id="box" placeholder="entrer votre message" id="" cols="30" rows="10"></textarea>
             <input type="submit" value="send message" name="send" id="btn">
          </form>
 
       </section>
-
-
-
-
-
 
 
 
@@ -78,20 +73,20 @@ require_once ('navbar.php');
          // Sélectionnez tous les éléments ayant la classe "message"
          const messages = document.querySelectorAll('.message');
 
-         // Parcourez chaque élément et planifiez sa suppression après 3 secondes
-         messages.forEach((message) => {
-            // Utilisez setTimeout pour définir un délai de 3 secondes avant de masquer le message
+         // Fonction pour supprimer un message après 3 secondes
+         const removeMessage = (message) => {
             setTimeout(() => {
-               // Ajoutez une classe pour cacher le message avec une transition CSS
-               message.classList.add('hide-message');
+               message.remove(); // Supprimez l'élément du DOM
+            }, 4000); // Délai de 3 secondes
+         };
 
-               // Attendez la fin de la transition CSS, puis supprimez complètement l'élément du DOM
-               message.addEventListener('transitionend', () => {
-                  message.remove();
-               }, {
-                  once: true // Le gestionnaire d'événements ne sera appelé qu'une seule fois
-               });
-            }, 3000); // 3000 millisecondes = 3 secondes
+         // Pour chaque message, appelez la fonction pour le supprimer après 3 secondes
+         messages.forEach((message) => {
+            // Ajouter une classe pour afficher le message
+            message.classList.add('show');
+
+            // Supprimer le message après 3 secondes
+            removeMessage(message);
          });
       </script>
 
