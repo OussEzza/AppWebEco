@@ -36,7 +36,7 @@ if (!isset($_SESSION['email'])) {
             }
 
             video {
-                position: fixed;
+                position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
@@ -79,6 +79,10 @@ if (!isset($_SESSION['email'])) {
             #btn:hover {
                 background-color: #15b300;
                 cursor: pointer;
+            }
+
+            #logo-planet{
+                color: #0dff00;
             }
         </style>
 

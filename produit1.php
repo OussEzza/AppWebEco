@@ -23,7 +23,7 @@ if (!isset($_SESSION['email'])) {
                 <a href="profil.php"><i class="fas fa-user"></i></a>
             </div>
             <div class="logo">
-                <h1><a href="home.php">GamingPlanet</a></h1>
+                <h1><a href="home.php"><b id="logo-planet">Gaming</b>Planet</a></h1>
             </div>
             <div class="search-box">
                 <form id="searchForm" method="GET" action="produit1.php">

@@ -15,7 +15,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  color: #0dff00;
 }
 
 .logo h1 {
@@ -25,6 +25,9 @@ header {
 
 .logo h1 a {
   text-decoration: none;
+  color: #0dff00;
+}
+#logo-planet{
   color: white;
 }
 
@@ -72,11 +75,11 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: white;
+  color: #0dff00;
 }
 
 nav ul li a:hover {
-  color: #0dff00;
+  color: white;
 }
 
 .slideshow {
@@ -153,7 +156,7 @@ li:hover .submenu {
 
 /* Style pour les liens dans les sous-menus au survol */
 .submenu li a:hover {
-  /* background-color: #ffcc00; */
+  color: #0dff00;
   margin: 6px;
   display: block; /* Assure que les marges fonctionnent comme attendu */
 }

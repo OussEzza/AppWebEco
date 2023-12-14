@@ -16,7 +16,7 @@
             <a href="profil.php"><i class="fas fa-user"></i></a>
         </div>
         <div class="logo">
-            <h1 style="margin-right: 700px;"><a href="home.php">GamingPlanet</a></h1>
+            <h1 style="margin-right: 700px;"><a href="home.php"><b id="logo-planet">Gaming</b>Planet</a></h1>
         </div>
         <nav>
             <ul>
