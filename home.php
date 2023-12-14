@@ -17,6 +17,11 @@ if (!isset($_SESSION['email'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
         <title>Accueil - GamingPlanet</title>
+        <style>
+            img{
+                width: 1600px;
+            }
+        </style>
 
     </head>
 
@@ -26,8 +31,9 @@ if (!isset($_SESSION['email'])) {
 
         <video autoplay muted loop>
             <source src="photo/White Shadows Razer Chroma Announcement Trailer.mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la lecture de la vidéo.
-        </video>
+         </video>
+         <img src="photo/img2.jpeg" alt=" ">
+  
         <div class="container-div">
             <div class="content">
                 <h1 class="bien">Bienvenue chez GamingPlanet !</h1>
