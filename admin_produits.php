@@ -131,7 +131,7 @@
     
     
 </style>
-    </style>
+     
 </head>
 <link rel="stylesheet" href="admin_page.css">
 <header class="header">
