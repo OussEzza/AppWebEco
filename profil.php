@@ -110,7 +110,8 @@ if (!isset($_SESSION['email'])) {
 
         echo '</div>';
 
-
+        require_once ('footer.php');
+    
         ?>
     </body>
 

@@ -1,0 +1,58 @@
+#contact form {
+  display: block;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#contact form h3 {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #0dff00;
+}
+
+#contact form .box {
+  margin: 1rem 0;
+  width: 100%;
+  /* border:var(--border); */
+  background-color: #fff;
+  padding: 1.2rem 1.4rem;
+  font-size: 16px;
+  color: black;
+  border-radius: 0.5rem;
+}
+
+#contact form textarea {
+  width: auto;
+  height: auto;
+  resize: none;
+}
+
+#btn {
+  max-width: 50px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0dff00;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#btn:hover {
+  background-color: #15b300;
+}
+
+/* Ajoutez votre style pour cacher le message avec une transition */
+.message {
+  /* Styles pour votre message */
+  transition: opacity 0.5s ease-out;
+  background-color: azure;
+  color: black;
+}

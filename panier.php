@@ -211,7 +211,9 @@ if (!isset($_SESSION['email'])) {
 
 
 
-
+      
+        require_once ('footer.php');
+        
         ?>
     </body>
 

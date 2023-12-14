@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+* {
+  font-family: Poppins;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  padding: 30px;
+}
+
+.description{
+    margin: 20px auto;
+    text-align: justify;
+}
+#footer .container {
+  /* max-width: 1200px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  flex-direction: column;
+}
+.row,
+#footer-bottom {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.col-md-3 {
+  flex-basis: calc(
+    25% - 20px
+  ); /* Ajustez la largeur des colonnes selon vos besoins */
+  margin-bottom: 20px;
+}
+
+.footer-menu h4, h5 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #0dff00;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn{
+    background-color: #0dff00;
+    color: black;
+    padding: 10px;
+    border: none;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.col-md-12 {
+  align-self: center;
+}
+.footer-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu ul li {
+  margin-bottom: 8px;
+}
+
+.footer-menu ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-menu ul li a:hover {
+  color: #0dff00;
+}
+
+.footer-menu .mail-id {
+  color: #666;
+}
+
+#scroll-up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0dff00; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte */
+  border: none;
+  border-radius: 50%; /* Pour obtenir une forme circulaire */
+  width: 40px; /* Largeur du bouton */
+  height: 40px; /* Hauteur du bouton */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+#scroll-up:hover {
+  background-color: #45d62e; /* Couleur de fond au survol */
+}
+
+/* Style spécifique pour l'icône à l'intérieur du bouton */
+#scroll-up svg {
+  width: 70%; /* Taille de l'icône */
+  height: auto;
+}
+
+.social-links {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.social-links p {
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+.social-links ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.social-links li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: #0dff00;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #45d62e; /* Couleur au survol */
+}
+
+.copyright{
+    text-align: center;
+}
