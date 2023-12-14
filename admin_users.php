@@ -20,8 +20,7 @@ if (isset($_GET['delete'])) {
 // Processus de modification d'utilisateur
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
    $edit_id = mysqli_real_escape_string($conn, $_POST['edit_user_id']);
-   // Vous pouvez rediriger vers la page d'édition avec l'ID de l'utilisateur
-   header("Location: edit_user.php?id=$edit_id");
+     header("Location: edit_user.php?id=$edit_id");
    exit();
 }
 ?>
@@ -35,16 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COMPTES D’UTILISATEURS</title>
 
-    <!-- Font Awesome CDN link -->
+     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Custom admin CSS file link -->
+  
     <link rel="stylesheet" href="css/admin_style.css">
 
     <style>
         body {
             font-family: "Arial", sans-serif;
-            background: linear-gradient(to right,  #214a1d, #2ecc71);  
             color: #fff;
             margin: 0;
             padding: 0;
@@ -96,8 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
         }
 
         .box a:hover {
-            background-color: #c0392b; /* Rouge plus foncé au survol */
+            background-color: #c0392b; 
         }
+        .panel .user-text{
+                 color: #60dea1;  
+              }
     </style>
 
 </head>
@@ -108,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
 
     <section class="users">
 
-        <h1 class="title">COMPTES D’UTILISATEURS</h1>
+         <div class="panel">
+        <h1 class="title">COMPTES <span class="user-text">D'UTILISATEURS</span></h1>
+    </div>
 
         <div class="box-container">
             <?php
@@ -121,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
                     <p> Email: <span><?php echo $fetch_users['Email']; ?></span> </p>
                     <p> User type: <span style="color:<?php echo ($fetch_users['type'] == 'admin') ? '#e67e22' : '#3498db'; ?>"><?php echo $fetch_users['type']; ?></span> </p>
                     
-                    <!-- Formulaire pour le bouton de modification -->
+                     
                     <form method="post" action="admin_users.php">
                         <input type="hidden" name="edit_user_id" value="<?php echo $fetch_users['Id']; ?>">
                         <input type="submit" name="edit_user" value="modifier l'utilisateur" style="background-color: #3498db;">
@@ -139,3 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
 </body>
 
 </html>
+
+
+
+
+ 

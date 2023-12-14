@@ -1,4 +1,4 @@
-<!-- manage_products.php -->
+ 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -126,34 +126,26 @@
     a:hover {
     color: #3498db;
 }
-
- 
-    
-    
+      .panel .product{
+            color:#60dea1;  
+            padding: 20px;
+            text-align: center;
+        }
+        .panel  {
+            color:black;  
+             
+        }
 </style>
      
 </head>
 <link rel="stylesheet" href="admin_page.css">
-<header class="header">
-    <div class="flex">
-    <a href="admin_page.php" class="logo">Admin<span>Panel</span></a>
-       
-        <nav class="navbar">
-            <a href="admin_page.php">Accueil</a>
-            <a href="admin_produits.php">Produits</a>
-            <a href="admin_commande.php">Commandes</a>
-            <a href="admin_users.php">Utilisateurs</a>
-            <a href="admin_contact.php">Messages</a>
-        </nav>
-
-       <div class="category-logo">
-                <a href="profil_admin.php"><i class="fas fa-user"></i></a>
-         </div>
-    </div>
-</header>
+ 
 <body>
+<?php include 'admin_header.php'; ?>
 
-    <h1>Gestion des Produits</h1>
+<div class="panel">
+        <h1>Gestion<span class="product ">des Produits</span></h1>
+    </div>
     <form action="" method="post" enctype="multipart/form-data">
         <label for="product_name">Nom du Produit:</label>
         <input type="text" name="product_name" required>
@@ -188,7 +180,7 @@
     // Inclure le fichier de connexion à la base de données
     require_once('connection.php');
 
-    // Gérer les actions (Ajout, Modification, Suppression)
+    // Gérer (Ajout, Modification, Suppression)
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['add_product'])) {
             $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
@@ -208,7 +200,7 @@
                 $uploadOk = 0;
             }
 
-            // Vérifier la taille du fichier
+            // Vérifier la taille  
             if ($_FILES["product_image"]["size"] > 500000) {
                 echo "Désolé, votre fichier est trop volumineux.";
                 $uploadOk = 0;
@@ -228,7 +220,7 @@
                 $uploadOk = 0;
             }
 
-            // Si tout est OK, télécharger le fichier
+            // passons télécharger le fichier
             if ($uploadOk == 1) {
                 if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
                     echo "Le fichier " . htmlspecialchars(basename($_FILES["product_image"]["name"])) . " a été téléchargé.";
@@ -248,8 +240,7 @@
                 echo "Désolé, votre fichier n'a pas été téléchargé.";
             }
         } elseif (isset($_POST['update_product'])) {
-            // Traitement de la mise à jour de produit
-            // ...
+            
         }
     }
 

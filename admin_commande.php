@@ -1,5 +1,5 @@
 <?php
-// Assurez-vous que le fichier de connexion est inclus correctement
+ 
 include('connection.php');
 
 // Vérifiez si la connexion à la base de données 
@@ -7,7 +7,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Traitement du formulaire de mise à jour
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
     $orderId = $_POST['order_id'];
     $newLivraisonStatus = $_POST['new_status'];
@@ -74,13 +74,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            margin: 0 auto;
+           
         }
 
         .box {
             background-color: #fff;
             padding: 20px;
             margin: 20px;
-            border-radius: 10px;
+            border-radius: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s ease;
         }
@@ -159,27 +161,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
             margin: 20px;
             color: #555;
         }
-
-       
+      .panel5 {
+       margin: 20px;
+      }
+      .users .pane5{
+        text-align: center;
+        max-width: 1450px ;
+        padding: 10px;
+      }
+      .users .pane5 .title{
+        color: black;
+      }
+      .users .pane5 .user-text{
+        color: #60dea1;
+      }
         
     </style>
 </head>
+<section class="users">
+
 
 <body>
-    <header class="header">
-        <div class="flex">
-            <a href="admin_page.php" class="logo">Admin<span>Panel</span></a>
-            <nav class="navbar" id="myNavbar">
-                <a href="admin_page.php">Accueil</a>
-                <a href="admin_produits.php">Produits</a>
-                <a href="admin_commande.php">Commandes</a>
-                <a href="admin_users.php">Utilisateurs</a>
-                <a href="admin_contact.php">Messages</a>
-                <a class="mobile-menu-button" href="javascript:void(0);" onclick="toggleNavbar()">&#9776;</a>
-            </nav>
+<?php include 'admin_header.php'; ?>
+      <section class="users">
+        <div class="pane5">
+            <h1 class="title">LES <span class="user-text">COMMANDES</span></h1>
         </div>
-    </header>
-
     <section class="orders">
         <div class="box-container">
             <?php
@@ -209,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
                             <td style="color:<?php echo ($fetch_orders['livraison_status'] == 'E----*n cours') ? 'red' : 'green'; ?>"><?php echo $fetch_orders['livraison_status']; ?></td>
                             <td>
                                 <?php
-                                $isAdmin = true; // Mettez votre propre logique pour vérifier le statut d'administrateur ici
+                                $isAdmin = true; //  vérifier le statut d'administrateur  
                                 if ($isAdmin) {
                                 ?>
                                     <form action="admin_commande.php" method="post">

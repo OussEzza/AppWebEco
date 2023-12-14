@@ -51,7 +51,7 @@
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
             text-decoration: none; /* Retirer le soulignement */
-            color: #ecf0f1; /* Couleur du texte par défaut */
+            color: #ecf0f1;  
         }
 
         .box:hover {
@@ -67,6 +67,14 @@
         .box p {
             margin: 0;
             font-size: 16px;
+        }
+        .DASHBOARD .text{
+            font-weight: bold;
+            color: #60dea1;
+        }
+        .DASHBOARD .title{
+            font-weight: bold;
+            color: black;
         }
 
         @keyframes fadeIn {
@@ -98,7 +106,9 @@
 
     <section class="DASHBOARD">
 
-        <h1 class="title">TABLEAU DE BORD</h1>
+    <div class="panel3">
+        <h1 class="title">TABLEAU <span class="text">DE BORD</span></h1>
+    </div>
 
         <div class="box-container">
 
