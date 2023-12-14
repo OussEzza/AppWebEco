@@ -54,7 +54,7 @@ if (!isset($_SESSION['email'])) {
 
       <section id="contact">
          <form action="" method="post">
-            <h3>say something!</h3>
+            <h3>DIRE QUELQUE CHOSE!</h3>
             <input type="text" name="name" required placeholder="entrer votre nom" class="box">
             <input type="email" name="email" required placeholder="entrer votre email" class="box">
             <input type="number" name="number" required placeholder="entrer votre numéro" class="box">
