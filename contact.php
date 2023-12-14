@@ -58,7 +58,7 @@ if (!isset($_SESSION['email'])) {
             <input type="text" name="name" required placeholder="entrer votre nom" class="box">
             <input type="email" name="email" required placeholder="entrer votre email" class="box">
             <input type="number" name="number" required placeholder="entrer votre numéro" class="box">
-            <textarea name="message" id="box" placeholder="entrer votre message" id="" cols="30" rows="10"></textarea>
+            <textarea name="message" id="box" required placeholder="entrer votre message" id="" cols="30" rows="10"></textarea>
             <input type="submit" value="send message" name="send" id="btn">
          </form>
 

@@ -32,7 +32,7 @@ if (!isset($_SESSION['email'])) {
             <div class="content">
                 <h1 class="bien">Bienvenue chez GamingPlanet !</h1>
                 <p class="bien">Découvrez notre collection de produits</p>
-                <button id="btn"><a href="produit1.php" class="shop-button">Aller à la boutique</a></button>
+                <a href="produit1.php" class="shop-button"><button id="btn">Aller à la boutique</button></a>
             </div>
         </div>
 

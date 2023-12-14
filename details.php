@@ -54,7 +54,7 @@ if (!isset($_SESSION['email'])) {
                 echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                 echo '</form>';
                 echo '<div class="image-buttons">';
-                echo '<button class="btnback" ><a href="produit1.php">Back To Product</a></button>';
+                echo '<a href="produit1.php"><button class="btnback" >Back To Product</button></a>';
                 echo '</div>';
             } else {
                 echo "Aucun produit trouvé pour cet ID.";
@@ -78,7 +78,7 @@ if (!isset($_SESSION['email'])) {
 
             if ($result) {
                 $row = mysqli_fetch_assoc($result);
-                $quantityLimit = !empty($row['quantity']) ? $row['quantity'] : 0;
+                $quantityLimit = !empty($row['quantitate']) ? $row['quantitate'] : 0;
 
 
                 if ($totalQuantityEnPanier >= $quantityLimit) {

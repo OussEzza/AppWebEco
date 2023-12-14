@@ -102,7 +102,7 @@ if (!isset($_SESSION['email'])) {
                     echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                     echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                     echo '</form>';
-                    echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>';
+                    echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                     echo '</div>';
                     echo '</div>';
                 }
@@ -131,7 +131,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -162,7 +162,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -194,7 +194,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -226,7 +226,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -258,7 +258,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -290,7 +290,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -322,7 +322,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
