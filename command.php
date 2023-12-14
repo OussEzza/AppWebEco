@@ -101,7 +101,8 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="command.css">
-        <title>Validation de commande</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Validation de commande - GamingPlanet</title>
     </head>
 
     <body>

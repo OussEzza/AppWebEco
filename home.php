@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once('navbar.php');
 if (!isset($_SESSION['email'])) {
     header('location:login.php');
 } else {
@@ -16,48 +15,30 @@ if (!isset($_SESSION['email'])) {
         <link rel="stylesheet" href="stye eco.css" />
         <link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-        <title>GamingPlanet</title>
-        <style>
-           
-            .swiper-slide img {
-                width: 100%;
-                height: 100vh;
-               
-                height: auto;
-               
-                display: block;
-               
-                margin: 0 auto;
-               
-            }
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Accueil - GamingPlanet</title>
 
-           
-            .swiper-container {
-                display: flex;
-               
-                justify-content: center;
-               
-                align-items: center;
-               
-            }
-        </style>
     </head>
 
     <body>
+        <?php require_once('navbar.php'); ?>
 
 
-
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="photo/Sl1.jpg" alt="Image 1"></div>
-                <div class="swiper-slide"><img src="photo/Sl4.jpg" alt="Image 2"></div>
-
+        <video autoplay muted loop>
+            <source src="photo/White Shadows Razer Chroma Announcement Trailer.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture de la vidéo.
+        </video>
+        <div class="container-div">
+            <div class="content">
+                <h1 class="bien">Bienvenue chez GamingPlanet !</h1>
+                <p class="bien">Découvrez notre collection de produits</p>
+                <a href="produit1.php" class="shop-button"><button id="btn">Aller à la boutique</button></a>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
         </div>
 
+        <div>
+            <?php require_once('footer.php'); ?>
+        </div>
 
         <script>
             var swiper = new Swiper(".swiper-container", {
@@ -73,10 +54,10 @@ if (!isset($_SESSION['email'])) {
                     prevEl: ".swiper-button-prev",
                 },
                 autoplay: {
-                    delay: 5000, 
-                    disableOnInteraction: false, 
+                    delay: 5000,
+                    disableOnInteraction: false,
                 },
-                speed: 1000, 
+                speed: 1000,
             });
 
 
@@ -85,7 +66,7 @@ if (!isset($_SESSION['email'])) {
             var rootElement = document.documentElement;
 
             function scrollToTop() {
-                
+
                 rootElement.scrollTo({
                     top: 0,
                     behavior: "smooth"
@@ -98,7 +79,7 @@ if (!isset($_SESSION['email'])) {
             var rootElement = document.documentElement;
 
             function scrollToTop() {
-                
+
                 rootElement.scrollTo({
                     top: 0,
                     behavior: "smooth"
@@ -108,9 +89,6 @@ if (!isset($_SESSION['email'])) {
         </script>
 
 
-        <?php
-        require_once('footer.php');
-        ?>
     </body>
 
 

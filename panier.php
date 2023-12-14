@@ -13,7 +13,8 @@ if (!isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylespanier.css">
-        <title>Panier</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Panier - GamingPlanet</title>
     </head>
 
     <body>
@@ -193,7 +194,7 @@ if (!isset($_SESSION['email'])) {
             echo '<p class="no-product-message">Pas encore d\'articles ? Continuez vos achats pour en savoir plus.</p>';
             echo '</div>';
         }
-        echo '<button class="btnback"><a href="produit1.php">Retour aux produits</a></button>';
+        echo '<a href="produit1.php"><button class="btnback">Retour aux produits</button></a>';
 
 
 

@@ -46,7 +46,7 @@ if (!isset($_SESSION['email'])) {
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="contact.css">
-      <title>Contact</title>
+      <title>Contact - GamingPlanet</title>
 
    </head>
 
@@ -54,11 +54,11 @@ if (!isset($_SESSION['email'])) {
 
       <section id="contact">
          <form action="" method="post">
-            <h3>say something!</h3>
+            <h3>DIRE QUELQUE CHOSE!</h3>
             <input type="text" name="name" required placeholder="entrer votre nom" class="box">
             <input type="email" name="email" required placeholder="entrer votre email" class="box">
             <input type="number" name="number" required placeholder="entrer votre numéro" class="box">
-            <textarea name="message" id="box" placeholder="entrer votre message" id="" cols="30" rows="10"></textarea>
+            <textarea name="message" id="box" required placeholder="entrer votre message" id="" cols="30" rows="10"></textarea>
             <input type="submit" value="send message" name="send" id="btn">
          </form>
 

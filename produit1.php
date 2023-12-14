@@ -13,7 +13,8 @@ if (!isset($_SESSION['email'])) {
         <link rel="stylesheet" href="stye eco.css">
         <link rel="stylesheet" href="product.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-        <title>GamingPlanet</title>
+        <link rel="icon" href="photo/7553408.jpg" type="image/x-icon">
+        <title>Produits - GamingPlanet</title>
     </head>
 
     <body>
@@ -101,7 +102,7 @@ if (!isset($_SESSION['email'])) {
                     echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                     echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                     echo '</form>';
-                    echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>';
+                    echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                     echo '</div>';
                     echo '</div>';
                 }
@@ -130,7 +131,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a class="stretched-link" href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -161,7 +162,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -193,7 +194,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -225,7 +226,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -257,7 +258,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -289,7 +290,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -321,7 +322,7 @@ if (!isset($_SESSION['email'])) {
                         echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                         echo '<button class="addpanier" id="add-to-cart" type="submit" name="add_to_cart" data-product-id="' . $row['id'] . '">Ajouter au Panier</button>';
                         echo '</form>';
-                        echo '<button class="affdetails"><a href="details.php?id=' . $row['id'] . '">Voir les détails</a></button>        ';
+                        echo '<a class="stretched-link" href="details.php?id=' . $row['id'] . '"><button class="affdetails">Voir les détails</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
