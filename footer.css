@@ -14,7 +14,7 @@ footer {
     text-align: justify;
 }
 #footer .container {
-  /* max-width: 1200px; */
+ 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -32,7 +32,7 @@ footer {
 .col-md-3 {
   flex-basis: calc(
     25% - 20px
-  ); /* Ajustez la largeur des colonnes selon vos besoins */
+  );
   margin-bottom: 20px;
 }
 
@@ -89,12 +89,12 @@ input{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #0dff00; /* Couleur de fond du bouton */
-  color: #fff; /* Couleur du texte */
+  background-color: #0dff00;
+  color: #fff;
   border: none;
-  border-radius: 50%; /* Pour obtenir une forme circulaire */
-  width: 40px; /* Largeur du bouton */
-  height: 40px; /* Hauteur du bouton */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -103,12 +103,12 @@ input{
 }
 
 #scroll-up:hover {
-  background-color: #45d62e; /* Couleur de fond au survol */
+  background-color: #45d62e;
 }
 
-/* Style spécifique pour l'icône à l'intérieur du bouton */
+
 #scroll-up svg {
-  width: 70%; /* Taille de l'icône */
+  width: 70%;
   height: auto;
 }
 
@@ -140,7 +140,7 @@ input{
 }
 
 .social-links a:hover {
-  color: #45d62e; /* Couleur au survol */
+  color: #45d62e;
 }
 
 .copyright{

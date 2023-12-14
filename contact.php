@@ -68,24 +68,18 @@ if (!isset($_SESSION['email'])) {
 
       <?php include 'footer.php'; ?>
 
-      <!-- custom js file link  -->
       <script>
-         // Sélectionnez tous les éléments ayant la classe "message"
          const messages = document.querySelectorAll('.message');
 
-         // Fonction pour supprimer un message après 3 secondes
          const removeMessage = (message) => {
             setTimeout(() => {
-               message.remove(); // Supprimez l'élément du DOM
-            }, 4000); // Délai de 3 secondes
+               message.remove(); 
+            }, 4000); 
          };
 
-         // Pour chaque message, appelez la fonction pour le supprimer après 3 secondes
          messages.forEach((message) => {
-            // Ajouter une classe pour afficher le message
             message.classList.add('show');
 
-            // Supprimer le message après 3 secondes
             removeMessage(message);
          });
       </script>

@@ -1,18 +1,10 @@
 /* Import de la police */
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-/* Réinitialisation de la police pour tous les éléments */
 * {
   font-family: Poppins;
 }
-/* .product-container{
-  width: 80%;
-  justify-content: space-between;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
-  padding: 20px;
-} */
-/* Titre du produit */
+
 .info-container h3 {
   margin-left: 20px;
   font-size: 28px;
@@ -20,35 +12,32 @@
   margin-bottom: -10px;
 }
 
-/* Conteneur pour l'image et la description */
 .image-description {
   display: flex;
-  align-items: flex-start; /* Alignement vertical en haut */
+  align-items: flex-start; 
   margin-bottom: 20px;
 }
 
-/* Conteneur de l'image avec une marge à droite */
 .image-container {
   margin-right: 20px;
 }
 
-/* Style de l'image */
 #product-image {
   margin-right: 10px;
-  max-width: 500px; /* Image prenant toute la largeur disponible */
-  height: 400px; /* Pour conserver les proportions */
+  max-width: 500px; 
+  height: 400px; 
   border-radius: 8px;
   padding: -100px;
 }
 
-/* Conteneur pour les informations du produit */
+
 .info-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrage vertical */
+  justify-content: center; 
 }
 
-/* Styles pour le prix et la quantité */
+
 .price{
   margin-left: 20px;
   margin-bottom: -10px;
@@ -62,14 +51,14 @@
   margin-left: 20px;
 }
 
-/* Description du produit */
+
 .description {
   width: 800px;
   margin-top: 0px;
   line-height: 1.5;
 }
 
-/* Styles pour le bouton de retour */
+
 .image-buttons {
   text-align: center;
 }
@@ -86,9 +75,9 @@ a{
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  text-decoration: none; /* Assurez-vous que le lien n'a pas de soulignement */
-  color: black; /* Couleur du texte */
-  font-weight: 600; /* Épaisseur du texte */
+  text-decoration: none; 
+  color: black; 
+  font-weight: 600; 
   margin-left: 20px;
 }
 
@@ -97,7 +86,7 @@ a{
 }
 
 .btnback:active, .addpanier:active {
-  transform: translateY(2px); /* Décaler légèrement vers le bas lorsqu'il est cliqué */
+  transform: translateY(2px); 
 }
 
 .addpanier{

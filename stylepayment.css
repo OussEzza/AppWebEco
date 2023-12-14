@@ -1,9 +1,9 @@
-/* stylepayment.css */
+
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 *{
   font-family: Poppins;
 }
-/* Style général de la page */
+
 body {
   background-color: white;
   color: black;
@@ -32,7 +32,7 @@ body {
 
 .column.right {
   flex: 1;
-  max-width: 30%;
+  max-width: 35%;
   height: 88vh;
   position: relative;
   padding-bottom: 50px;
@@ -69,7 +69,7 @@ body {
 }
 
 .imgpanier {
-  border: 1px solid #45d62e;
+  border: 1px solid #0dff00;
   max-width: 100px;
   height: auto;
   margin-bottom: 10px;
@@ -82,7 +82,7 @@ body {
 
 .price {
   font-weight: bold;
-  color: #45d62e;
+  color: #0dff00;
   margin-bottom: 5px;
   margin-right: 10px;
 }
@@ -90,7 +90,7 @@ body {
 .total-amount {
   font-size: 24px;
   font-weight: bold;
-  color: #45d62e;
+  color: #0dff00;
   text-align: center;
   margin-top: 20px;
 }
@@ -99,7 +99,7 @@ body {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #45d62e;
+  background-color: #0dff00;
   color: black;
   padding: 10px 20px;
   border-radius: 5px;
@@ -113,9 +113,10 @@ body {
 }
 
 .btnback:hover {
+  background-color: #45d62e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-/* Style de la colonne de droite */
+
 .column.right {
   background-color: #f2f2f2;
   padding: 20px;
@@ -132,7 +133,6 @@ h1 {
   border-radius: 5px;
 }
 
-/* Styles pour le conteneur du tableau */
 .total-panier {
   max-width: 600px;
   margin: 20px auto;
@@ -140,31 +140,28 @@ h1 {
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  float: right; /* positionnement à droite */
+  float: right; 
   text-align: left;
 }
 
-/* Styles pour le tableau */
 .total-panier-table {
   width: 100%;
-  border-collapse: collapse; /* Fusionne les bordures du tableau */
-  border: none; /* Supprime toutes les bordures */
+  border-collapse: collapse; 
+  border: none; 
 }
 
-/* Styles pour les cellules d'en-tête */
+
 .total-panier-table th {
   text-align: left;
   padding: 10px;
-  border-bottom: 1px solid black; /* Ajoute uniquement la bordure du bas */
+  border-bottom: 1px solid black; 
 }
 
-/* Styles pour les cellules de données */
 .total-panier-table td {
   padding: 10px;
-  border-bottom: 1px solid black; /* Ajoute uniquement la bordure du bas */
+  border-bottom: 1px solid black; 
 }
 
-/* Styles pour le bouton */
 
 .gopayment a {
   text-decoration: none;
@@ -172,10 +169,10 @@ h1 {
 }
 
 .gopayment {
-  background-color: #45d62e; /* couleur verte */
+  background-color: #0dff00; 
   color: white;
   border: none;
-  padding: 15px 30px; /* ajustement de la taille */
+  padding: 15px 30px; 
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
@@ -184,13 +181,14 @@ h1 {
   text-align: center;
   margin-top: 20px;
   transition: background-color 0.3s ease;
-  font-size: 14px; /* taille du texte */
-  font-family: Arial, sans-serif; /* police du texte */
-  font-weight: bold; /* poids du texte */
-  text-transform: uppercase; /* en majuscules */
-  position: relative; /* position relative */
+  font-size: 14px;
+  font-family: Arial, sans-serif; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  position: relative; 
 }
 
 .gopayment:hover {
+  background-color: #45d62e;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
