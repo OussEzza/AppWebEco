@@ -44,7 +44,7 @@
 }
 
 .imgpanier {
-  max-width: 100px; /* Ajuster la taille de l'image */
+  max-width: 100px;
   height: auto;
   border-radius: 5px;
 }
@@ -148,10 +148,9 @@ input[type="number"] {
   height: auto;
 }
 
-/* CSS pour les boutons d'ajout et de soustraction de la quantité */
 .quantiteplus,
 .quantiteless {
-  border-radius: 50%; /* Pour donner une forme circulaire */
+  border-radius: 50%;
   border: none;
   background: none;
   padding: 0;
@@ -166,10 +165,9 @@ input[type="number"] {
 
 .quantiteplus:hover,
 .quantiteless:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre au survol */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
 }
 
-/* CSS pour le span affichant la quantité */
 .spanquantity {
   text-align: center;
   margin: 0 10px;
@@ -182,12 +180,11 @@ input[type="number"] {
   color: #cc0000;
   padding: 10px;
   text-align: center;
-  display: block; /* Assurez-vous que le message est visible */
-  transition: opacity 0.5s ease; /* Ajoute une transition douce */
+  display: block; 
+  transition: opacity 0.5s ease; 
 }
 
 
-/* Styles pour le conteneur du tableau */
 .total-panier {
   max-width: 600px;
   margin: 20px auto;
@@ -196,36 +193,32 @@ input[type="number"] {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   right:auto;
-  /* float: right;  */
   justify-content: space-between;
 }
 
-/* Styles pour le tableau */
+
 .total-panier-table {
   width: 100%;
-  border-collapse: collapse; /* Fusionne les bordures du tableau */
-  border: none; /* Supprime toutes les bordures */
+  border-collapse: collapse; 
+  border: none; 
 }
 
-/* Styles pour les cellules d'en-tête */
 .total-panier-table th {
   text-align: left;
   padding: 10px;
-  border-bottom: 1px solid black; /* Ajoute uniquement la bordure du bas */
+  border-bottom: 1px solid black; 
 }
 
-/* Styles pour les cellules de données */
 .total-panier-table td {
   padding: 10px;
-  border-bottom: 1px solid black; /* Ajoute uniquement la bordure du bas */
+  border-bottom: 1px solid black; 
 }
 
-/* Styles pour le bouton */
 .gopayment {
-  background-color: #0dff00; /* couleur verte */
+  background-color: #0dff00; 
   color: white;
   border: none;
-  padding: 15px 30px; /* ajustement de la taille */
+  padding: 15px 30px; 
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
@@ -234,10 +227,10 @@ input[type="number"] {
   text-align: center;
   margin-top: 20px;
   transition: background-color 0.3s ease;
-  font-size: 14px; /* taille du texte */
-  font-weight: bold; /* poids du texte */
-  text-transform: uppercase; /* en majuscules */
-  position: relative; /* position relative */
+  font-size: 14px; 
+  font-weight: bold; 
+  text-transform: uppercase;
+  position: relative;
 }
 
 .gopayment:hover {

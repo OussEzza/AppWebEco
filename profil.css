@@ -1,4 +1,4 @@
-/* Style général */
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 body {
     font-family: Poppins;
@@ -16,7 +16,6 @@ h1 {
     text-align: center;
 }
 
-/* Style du formulaire */
 form {
     margin-right: 20px;
     display: flex;
@@ -59,7 +58,6 @@ button[type="submit"]:hover {
 }
 
 
-/* Style du tableau */
 table {
     width: 80%;
     border-collapse: collapse;
@@ -69,23 +67,19 @@ table {
     border-radius: 10pz;
 }
 
-/* Style des cellules du tableau */
 table th, table td {
-    border: none; /* Bordure plus fine pour les cellules */
-    padding: 6px; /* Rembourrage plus petit */
+    border: none; 
+    padding: 6px; 
 }
 
-/* Style de l'en-tête du tableau */
 table th {
     background-color: #0dff00;
 }
 
-/* Style des lignes impaires du tableau */
 table tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
 
-/* Style du survol de la souris sur les lignes du tableau */
 table tbody tr:hover {
     background-color: #e9e9e9;
 }
@@ -94,3 +88,31 @@ table tbody tr:hover {
     margin-bottom: 50px;
     color: #45d62e;
 }
+
+.no-product-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+  }
+  
+  .Noproduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 400px; 
+  }
+  
+  .Noproduct img {
+    max-width: 100%;
+    height: auto;
+  }
+
+.message {
+    background-color: #333;
+    color: #0dff00;
+    text-align: center;
+    font-size: 18px;
+  }

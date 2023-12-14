@@ -21,23 +21,30 @@ if (!isset($_SESSION['email'])) {
         require_once('connection.php');
         $userid = $_SESSION['id'];
 
-        // Vérifier si le formulaire a été soumis pour mettre à jour les données
         if (isset($_POST['submit'])) {
-            // Récupérer les nouvelles valeurs depuis le formulaire
             $newUsername = $_POST['username'];
             $newAdresse = $_POST['adresse'];
             $newPhoneNumber = $_POST['numero_telephone'];
             $newEmail = $_POST['email'];
 
-            // Mettre à jour les données dans la base de données
-            // (Vous devriez utiliser des requêtes préparées pour des raisons de sécurité)
             $updateQuery = "UPDATE users SET Username='$newUsername', adresse='$newAdresse', numero_telephone='$newPhoneNumber', Email='$newEmail' WHERE Id = '$userid'";
             $result = mysqli_query($conn, $updateQuery);
 
             if ($result) {
-                // echo "Les informations ont été mises à jour avec succès.";
+                // echo "";
+                $messages[] = 'Les informations ont été mises à jour avec succès.!';
             } else {
-                // echo "Erreur lors de la mise à jour des informations: " . $conn->error;
+                $messages[] = 'Erreur lors de la mise à jour des informations: ' . $conn->error;
+            }
+
+
+
+            if (isset($messages)) {
+                foreach ($messages as $message) {
+                    echo '<div class="message">
+                  <span>' . $message . '</span>
+                  </div>';
+                }
             }
         }
 
@@ -80,7 +87,6 @@ if (!isset($_SESSION['email'])) {
         }
         echo '<div class="historique" >';
         echo '<h1>Historique</h1>';
-        // Code pour récupérer l'historique depuis la base de données
 
         $query = "SELECT * FROM historique WHERE user_id = '$userid'";
         $result = mysqli_query($conn, $query);
@@ -103,16 +109,35 @@ if (!isset($_SESSION['email'])) {
             echo '</tbody>';
             echo '</table>';
         } else {
-            echo 'Aucune commande trouvée.';
+            echo '<div class="Noproduct">';
+            echo '<img src="photo/NoProduct.webp" class="es--comet-pro-fallback-image--35CZGig" data-spm-anchor-id="a2g0o.cart.0.i3.3244378d1lo9Se"/>';
+            echo '<p class="no-product-message">Aucune commande trouvée.</p>';
+            echo '</div>';
         }
 
         echo '</div>';
 
         echo '</div>';
 
-        require_once ('footer.php');
-    
+        require_once('footer.php');
+
         ?>
+
+        <script>
+            const messages = document.querySelectorAll('.message');
+
+            const removeMessage = (message) => {
+                setTimeout(() => {
+                    message.remove();
+                }, 4000);
+            };
+
+            messages.forEach((message) => {
+                message.classList.add('show');
+
+                removeMessage(message);
+            });
+        </script>
     </body>
 
     </html>

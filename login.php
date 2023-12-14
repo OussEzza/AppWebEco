@@ -37,12 +37,12 @@
                     $result = mysqli_query($conn, "SELECT * FROM users WHERE Email='$email'") or die(mysqli_error($conn));
                     $row = mysqli_fetch_assoc($result);
 
-                    if ($row) { // Vérifie si la requête a retourné des données
+                    if ($row) { 
                         $motDePass = $row['motDePasse'];
                         if (password_verify($password, $motDePass)) {
                             $_SESSION['id'] = $row['Id'];
                             $_SESSION['email'] = $row['Email'];
-                            $_SESSION['type'] = $row['type']; // Ajout de la clé "type" dans la session
+                            $_SESSION['type'] = $row['type']; 
 
                             if ($row['type'] === 'admin') {
                                 header("Location: admin_header.php");

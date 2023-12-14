@@ -64,21 +64,20 @@
     <?php
 
     require_once('connection.php');
-    $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
+    $currentUserId = $_SESSION['id']; 
 
     $query = "SELECT SUM(quantity) AS total_items FROM panier WHERE user_id = '$currentUserId'";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalItems = $row['total_items']; // Nombre total d'articles dans le panier
+        $totalItems = $row['total_items']; 
     } else {
         $totalItems = 0;
     }
     ?>
 
     <script>
-        // JavaScript ici pour utiliser le résultat PHP, par exemple :
         var itemCount = <?php echo $totalItems; ?>;
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('nombreProduitsPanier').innerText = itemCount;

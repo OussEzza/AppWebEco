@@ -16,13 +16,11 @@ if (!isset($_SESSION['email'])) {
 
     require_once('connection.php');
 
-    // Votre logique de récupération de données utilisateur
     $userid = $_SESSION['id'];
     $queryUser = "SELECT * FROM users WHERE id = '$userid'";
     $resultUser = mysqli_query($conn, $queryUser);
     $rowUser = mysqli_fetch_assoc($resultUser);
 
-    // Supposons que $currentUserId contient l'ID de l'utilisateur actuel
     $query = "SELECT products.product_name, products.price, panier.quantity
                 FROM products
                 JOIN panier ON products.id = panier.product_id
@@ -39,34 +37,26 @@ if (!isset($_SESSION['email'])) {
                 'quantity' => $row['quantity']
             ];
         }
-        // Utilisez maintenant $products pour construire le contenu de l'email
-    } else {
-        // Gérer le cas où aucun produit n'est trouvé dans la commande
     }
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase'])) {
         try {
-            $mail = new PHPMailer(true); // Créer une instance de PHPMailer
+            $mail = new PHPMailer(true); 
 
-            // Génération d'un code de vérification
             $verificationCode = substr(md5(uniqid(mt_rand(), true)), 0, 8);
 
             $email = $_SESSION['email'];
 
-            // Insertion du code de vérification dans la base de données
-            // Utilisation sécurisée des valeurs échappées dans une requête SQL
             $query = "INSERT INTO orders(user_id, email, token) VALUES ('$userid', '$email', '$verificationCode')";
 
-            // Exécution de la requête
             $result = mysqli_query($conn, $query);
 
-            // Configuration et envoi de l'e-mail
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com'; // Configurez votre serveur SMTP
+            $mail->Host       = 'smtp.gmail.com'; 
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ezzahriraja@gmail.com'; // Remplacez par votre adresse Gmail
-            $mail->Password   = 'rljdsyklshfeodap'; // Utilisez le mot de passe d'application généré
+            $mail->Username   = 'ezzahriraja@gmail.com'; 
+            $mail->Password   = 'rljdsyklshfeodap'; 
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
 
@@ -75,9 +65,6 @@ if (!isset($_SESSION['email'])) {
 
             $mail->isHTML(true);
             $mail->CharSet = "UTF-8";
-            // Supposons que $products contient les détails de chaque produit de la commande
-
-            // ... votre code existant ...
 
             $subject = 'Confirmation de votre achat';
             $body = '
@@ -134,16 +121,15 @@ if (!isset($_SESSION['email'])) {
             $resultOrders = mysqli_query($conn, $queryOrders);
             $rowOrders = mysqli_fetch_assoc($resultOrders);
             $token = $rowOrders['token'];
-            $verificationCodeInput = $_POST['code-verification']; // ou récupérez-le d'où vous l'obtenez
+            $verificationCodeInput = $_POST['code-verification'];
 
             if ($token === $verificationCodeInput) {
-                $mail = new PHPMailer(true); // Créer une instance de PHPMailer
-                // Configuration et envoi de l'e-mail
+                $mail = new PHPMailer(true); 
                 $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com'; // Configurez votre serveur SMTP
+                $mail->Host       = 'smtp.gmail.com'; 
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'ezzahriraja@gmail.com'; // Remplacez par votre adresse Gmail
-                $mail->Password   = 'rljdsyklshfeodap'; // Utilisez le mot de passe d'application généré
+                $mail->Username   = 'ezzahriraja@gmail.com'; 
+                $mail->Password   = 'rljdsyklshfeodap'; 
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port       = 465;
 
@@ -152,9 +138,6 @@ if (!isset($_SESSION['email'])) {
 
                 $mail->isHTML(true);
                 $mail->CharSet = "UTF-8";
-                // Supposons que $products contient les détails de chaque produit de la commande
-
-                // ... votre code existant ...
 
                 $subject = 'Confirmation de votre achat';
                 $body = '
@@ -202,7 +185,6 @@ if (!isset($_SESSION['email'])) {
                     $totalAmount += $productTotal;
                 }
 
-                // Ajouter une ligne pour afficher le prix total
                 $body .= '
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid #ccc;"><strong>Total</strong></td>
@@ -229,16 +211,13 @@ if (!isset($_SESSION['email'])) {
                 $mail->send();
 
 
-                // Initialisation de la chaîne pour stocker les noms des produits avec leur quantité
                 $namesStringWithQuantity = '';
 
-                // Parcours des produits pour récupérer les noms avec leur quantité
                 foreach ($products as $product) {
                     $nameWithQuantity = $product['product_name'] . ' (' . $product['quantity'] . ')';
                     $namesStringWithQuantity .= $nameWithQuantity . ",\n";
                 }
 
-                // Suppression de la virgule et du retour à la ligne à la fin de la chaîne
                 $namesStringWithQuantity = rtrim($namesStringWithQuantity, ",\n");
 
 
@@ -248,12 +227,10 @@ if (!isset($_SESSION['email'])) {
                 $resultUpdate = mysqli_query($conn, $queryUpdate);
 
                 $message = "La commande est validé avec succès!";
-                // Supposons que $products contient les détails de chaque produit dans le panier
                 foreach ($products as $product) {
                     $productName = $product['product_name'];
                     $quantityPurchased = $product['quantity'];
 
-                    // Requête pour mettre à jour la quantité du produit dans la table 'products'
                     $queryUpdateQuantity = "UPDATE products 
                             SET quantitate = quantitate - '$quantityPurchased'
                             WHERE product_name = '$productName'";
@@ -272,11 +249,10 @@ if (!isset($_SESSION['email'])) {
                     $dateCommande = $rowSelect['Purchased_on'];
                     $detailsCommande = $rowSelect['names_products'];
                     $prixTotal = $rowSelect['total_price'];
-                    $etatCommande = $rowSelect['livraison_status']; // Mettez l'état approprié de la commande
-                    $methodePaiement = $rowSelect['method_payment']; // Mettez la méthode de paiement appropriée
+                    $etatCommande = $rowSelect['livraison_status']; 
+                    $methodePaiement = $rowSelect['method_payment']; 
                     $adresseLivraison = $rowSelect['address'];
 
-                    // Requête d'insertion dans la table historique_achat
                     $queryInsert = "INSERT INTO historique (user_id, commande_id, date_commande, details_commande, prix_total, etat_commande, methode_paiement, adresse_livraison) 
                     VALUES ('$userId', '$commandId', '$dateCommande', '$detailsCommande', '$prixTotal', '$etatCommande', '$methodePaiement', '$adresseLivraison')";
 
@@ -284,11 +260,7 @@ if (!isset($_SESSION['email'])) {
                     if ($resultInsert) {
                         $queryDelete = "DELETE FROM panier WHERE user_id = '$userId'";
                         $resultDelete = mysqli_query($conn, $queryDelete);
-                    } else {
-                        // Gérer l'échec de l'insertion dans l'historique
                     }
-                } else {
-                    // Gérer le cas où la commande n'est pas trouvée dans la table orders
                 }
                 echo '
                    <script>

@@ -21,10 +21,9 @@ if (!isset($_SESSION['email'])) {
         require_once('connection.php');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Suppression d'un produit du panier
             if (isset($_POST['remove_btn'])) {
                 $productId = $_POST['remove_product'];
-                $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
+                $currentUserId = $_SESSION['id']; 
 
                 $query = "DELETE FROM panier WHERE user_id = $currentUserId AND product_id = $productId";
                 $result = mysqli_query($conn, $query);
@@ -35,30 +34,24 @@ if (!isset($_SESSION['email'])) {
                 }
             }
 
-            // Modification de la quantité d'un produit dans le panier
-            // ... Update quantité (+)
 
-            // Traitement pour l'incrémentation de la quantité
+
             $error = "";
             if (isset($_POST['new_quantity_plus'])) {
                 $productId = $_POST['update_quantity'];
                 $currentUserId1 = $_SESSION['id'];
-                // Récupérer la quantité actuelle du produit dans le panier
                 $currentQuantityQuery = "SELECT SUM(quantity) AS total_quantity FROM panier WHERE product_id = $productId";
                 $currentQuantityResult = mysqli_query($conn, $currentQuantityQuery);
                 $currentQuantityRow = mysqli_fetch_assoc($currentQuantityResult);
-                $currentQuantity = $currentQuantityRow['total_quantity']; // Utiliser le nom de l'alias défini dans la requête SQL
+                $currentQuantity = $currentQuantityRow['total_quantity']; 
 
 
-                // Récupérer la quantité disponible dans le stock pour ce produit
                 $availableQuantityQuery = "SELECT quantitate FROM products WHERE id = $productId";
                 $availableQuantityResult = mysqli_query($conn, $availableQuantityQuery);
                 $availableQuantityRow = mysqli_fetch_assoc($availableQuantityResult);
                 $availableQuantity = $availableQuantityRow['quantitate'];
 
-                // Vérifier si la quantité totale ne dépasse pas la quantité disponible
                 if ($currentQuantity < $availableQuantity) {
-                    // Mettre à jour la quantité dans le panier en ajoutant 1
                     $updateQuery = "UPDATE panier SET quantity = quantity + 1 WHERE product_id = $productId and user_id = $currentUserId1";
                     $updateResult = mysqli_query($conn, $updateQuery);
 
@@ -71,22 +64,19 @@ if (!isset($_SESSION['email'])) {
                 }
             }
 
-            // Traitement pour la décrémentation de la quantité
             $error1 = "";
             if (isset($_POST['new_quantity_less'])) {
                 $productId = $_POST['update_quantity'];
                 $currentUserId2 = $_SESSION['id'];
 
-                // Récupérer la quantité actuelle du produit dans le panier
                 $currentQuantityQuery = "SELECT quantity AS total_quantity FROM panier WHERE product_id = $productId and user_id = $currentUserId2";
                 $currentQuantityResult = mysqli_query($conn, $currentQuantityQuery);
                 $currentQuantityRow = mysqli_fetch_assoc($currentQuantityResult);
-                $currentQuantity = $currentQuantityRow['total_quantity']; // Utiliser le nom de l'alias défini dans la requête SQL
+                $currentQuantity = $currentQuantityRow['total_quantity']; 
 
 
-                // Vérifier si la quantité dans le panier est supérieure à zéro
+
                 if ($currentQuantity > 1) {
-                    // Mettre à jour la quantité dans le panier en soustrayant 1
                     $updateQuery = "UPDATE panier SET quantity = quantity - 1 WHERE product_id = $productId and user_id = $currentUserId2";
                     $updateResult = mysqli_query($conn, $updateQuery);
 
@@ -99,7 +89,6 @@ if (!isset($_SESSION['email'])) {
                 }
             }
         }
-        // Affichage du message d'erreur si une erreur est survenue
 
         if (!empty($error) || !empty($error1)) {
             echo '<div class="error-message">' . ($error ? $error : $error1) . '</div>';
@@ -111,20 +100,17 @@ if (!isset($_SESSION['email'])) {
         }
 
 
-        // Récupération des produits dans le panier pour l'utilisateur actuel
         $currentUserId = $_SESSION['id'];
         $query = "SELECT products.id, products.product_name, products.price, products.product_image, panier.quantity
           FROM products
           JOIN panier ON products.id = panier.product_id
           WHERE panier.user_id = '$currentUserId'";
 
-        $result = mysqli_query($conn, $query); // Placez cette ligne après la définition de $query
-
+        $result = mysqli_query($conn, $query); 
 
         $totalAmount = 0;
 
         if ($result && mysqli_num_rows($result) > 0) {
-            // Affichage des détails des produits dans le panier
             echo '<div class="table-conrtainer">';
             echo '<table class="table1">';
             echo '<tr>';

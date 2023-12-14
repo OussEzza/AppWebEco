@@ -24,17 +24,14 @@ if (!isset($_SESSION['email'])) {
 
         
         
-        // Vérifie si l'ID du produit est présent dans l'URL
+        
         if (isset($_GET['id'])) {
-            // Récupère l'ID du produit depuis l'URL
             $productID = $_GET['id'];
 
-            // Exécute la requête SQL pour récupérer les détails du produit en fonction de l'ID
             $sql = "SELECT * FROM products WHERE id = $productID";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Affiche les détails du produit
                 $row = $result->fetch_assoc();
 
                 echo '<div class = "image-description"';
@@ -113,49 +110,40 @@ if (!isset($_SESSION['email'])) {
 
 
             if ($result && mysqli_num_rows($result) > 0) {
-                // Si le produit existe déjà dans le panier, mettez à jour la quantité
                 $row = mysqli_fetch_assoc($result);
-                $quantity = $row['quantity']; // Récupérer la quantité actuelle du produit dans le panier
+                $quantity = $row['quantity']; 
 
-                // Récupérer la quantité disponible du produit dans la table products
                 $queryProduct = "SELECT quantitate FROM products WHERE id = '$productId'";
                 $resultProduct = mysqli_query($conn, $queryProduct);
 
                 if ($resultProduct && mysqli_num_rows($resultProduct) > 0) {
                     $rowProduct = mysqli_fetch_assoc($resultProduct);
-                    $availableQuantity = $rowProduct['quantitate']; // Récupérer la quantité disponible du produit
+                    $availableQuantity = $rowProduct['quantitate']; 
 
                     if ($quantityTotal < $availableQuantity) {
-                        // Augmenter la quantité du produit dans le panier
                         $newQuantity = $quantity + 1;
                         $updateQuery = "UPDATE panier SET quantity = '$newQuantity' WHERE product_id = '$productId' AND user_id = '$currentUserId'";
                         $updateResult = mysqli_query($conn, $updateQuery);
                     } else {
-                        // Si la quantité maximale en stock est atteinte, afficher un message d'erreur via JavaScript
                         echo '<script>';
                         echo 'document.addEventListener(\'DOMContentLoaded\', function() {';
                         echo '    var button = document.querySelector(\'.addpanier[data-product-id="' . $productId . '"]\');';
                         echo '    button.style.color = \'red\';';
                         echo '    button.innerText  = \'Maximum quantity\';';
-                        echo '    button.disabled = true;'; // Désactiver le bouton
+                        echo '    button.disabled = true;'; 
                         echo '    button.style.cursor = not-allowed;';
                         echo '});';
                         echo '</script>';
                     }
-                } else {
-                    //gestion d'erreur 
-                }
+                } 
             } else {
                 $currentUserId = $_SESSION['id'];
                 $productId = $_POST['product_id'];
-                $selectedQuantity = 1; // La quantité par défaut
+                $selectedQuantity = 1; 
                 $insertQuery = "INSERT INTO panier (user_id, product_id, quantity) VALUES ('$currentUserId', '$productId', '$selectedQuantity')";
                 $insertResult = mysqli_query($conn, $insertQuery);
             }
-        } else {
-            //gestion d'erreur 
         }
-
 
         ?>
 

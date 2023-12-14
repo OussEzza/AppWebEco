@@ -25,14 +25,16 @@ if (!isset($_SESSION['email'])) {
                 <h1><a href="home.php">GamingPlanet</a></h1>
             </div>
             <div class="search-box">
-                <form method="GET" action="produit1.php">
-                    <input type="search" name="search" placeholder="Rechercher des produits" />
-                    <button type="submit" class="button" name="search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <form id="searchForm" method="GET" action="produit1.php">
+                    <input type="search" id="searchInput" name="search" placeholder="Rechercher des produits" />
+                    <button type="submit" class="button" name="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                        </svg></i></button>
+                        </svg>
+                    </button>
                 </form>
-
             </div>
+
             <nav>
                 <ul>
                     <li>
@@ -76,20 +78,16 @@ if (!isset($_SESSION['email'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
 
         <?php
-        // Inclure votre fichier de connexion à la base de données
         require_once('connection.php');
 
         $error = "";
         if (isset($_GET['search'])) {
             $searchTerm = $_GET['search'];
 
-            // Effectuer la recherche dans la base de données
             $query = "SELECT * FROM products WHERE product_name LIKE '%$searchTerm%'";
             $result = mysqli_query($conn, $query);
 
-            // Vérifier s'il y a des résultats
             if (mysqli_num_rows($result) > 0) {
-                // Afficher les produits filtrés
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product-details">';
                     echo '<div class="image-container">';
@@ -116,7 +114,6 @@ if (!isset($_SESSION['email'])) {
             <h2 class="h2section">Claviers</h2>
             <div class="product-grid">
                 <?php
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'Keyboards'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -148,7 +145,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'headphones'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -181,7 +177,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'mouses'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -214,7 +209,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'tapis'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -247,7 +241,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'streaming'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -280,7 +273,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'console'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -313,7 +305,6 @@ if (!isset($_SESSION['email'])) {
             <div class="product-grid">
                 <?php
 
-                // Récupérer les produits depuis la base de données
                 $query = "SELECT * FROM products WHERE categories = 'games'";
                 $result = mysqli_query($conn, $query);
                 if ($result) {
@@ -342,35 +333,31 @@ if (!isset($_SESSION['email'])) {
         <?php
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-            $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
+            $currentUserId = $_SESSION['id'];
             $productId = $_POST['product_id'];
 
-            // Vérifier si le produit existe déjà dans le panier de l'utilisateur actuel
             $query = "SELECT * FROM panier WHERE product_id = '$productId' AND user_id = '$currentUserId'";
             $result = mysqli_query($conn, $query);
 
             $queryQuantity = "SELECT SUM(quantity) AS total_quantity FROM panier WHERE product_id = '$productId' ";
             $resultQuantity = mysqli_query($conn, $queryQuantity);
             $rowQuantity = mysqli_fetch_assoc($resultQuantity);
-            $quantityTotal = $rowQuantity['total_quantity']; // Récupérer la quantité actuelle du produit dans le panier
+            $quantityTotal = $rowQuantity['total_quantity'];
 
 
 
             if ($result && mysqli_num_rows($result) > 0) {
-                // Si le produit existe déjà dans le panier, mettez à jour la quantité
                 $row = mysqli_fetch_assoc($result);
-                $quantity = $row['quantity']; // Récupérer la quantité actuelle du produit dans le panier
+                $quantity = $row['quantity'];
 
-                // Récupérer la quantité disponible du produit dans la table products
                 $queryProduct = "SELECT quantitate FROM products WHERE id = '$productId'";
                 $resultProduct = mysqli_query($conn, $queryProduct);
 
                 if ($resultProduct && mysqli_num_rows($resultProduct) > 0) {
                     $rowProduct = mysqli_fetch_assoc($resultProduct);
-                    $availableQuantity = $rowProduct['quantitate']; // Récupérer la quantité disponible du produit
+                    $availableQuantity = $rowProduct['quantitate'];
 
                     if ($quantityTotal < $availableQuantity) {
-                        // Augmenter la quantité du produit dans le panier
                         $newQuantity = $quantity + 1;
                         $updateQuery = "UPDATE panier SET quantity = '$newQuantity' WHERE product_id = '$productId' AND user_id = '$currentUserId'";
                         $updateResult = mysqli_query($conn, $updateQuery);
@@ -382,7 +369,7 @@ if (!isset($_SESSION['email'])) {
                         echo '    button.style.backgroundColor = \'red\';';
                         echo '    button.style.padding = \'6px\';';
                         echo '    button.innerText = \'En rupture de stock\';';
-                        echo '    button.disabled = true;'; // Désactiver le bouton
+                        echo '    button.disabled = true;';
                         echo '});';
                         echo '</script>';
 
@@ -393,8 +380,6 @@ if (!isset($_SESSION['email'])) {
                     }, 3000); // Disparaît après 3 secondes (3000 ms)
                     </script>';
                     }
-                } else {
-                    //gestion d'erreur 
                 }
             } else {
                 $currentUserId = $_SESSION['id'];
@@ -403,11 +388,8 @@ if (!isset($_SESSION['email'])) {
                 $insertQuery = "INSERT INTO panier (user_id, product_id, quantity) VALUES ('$currentUserId', '$productId', '$selectedQuantity')";
                 $insertResult = mysqli_query($conn, $insertQuery);
             }
-        } else {
-            //gestion d'erreur 
         }
 
-        // Affichage du message d'erreur si une erreur est survenue
 
         if (!empty($error) || !empty($error1)) {
             echo '<div class="error-message">' . ($error ? $error : $error1) . '</div>';
@@ -419,16 +401,15 @@ if (!isset($_SESSION['email'])) {
         }
 
 
-        // obtenir_nombre_produits_panier.php
 
-        $currentUserId = $_SESSION['id']; // Exemple d'ID utilisateur - à adapter
+        $currentUserId = $_SESSION['id'];
 
         $query = "SELECT SUM(quantity) AS total_items FROM panier WHERE user_id = '$currentUserId'";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
             $row = mysqli_fetch_assoc($result);
-            $totalItems = $row['total_items']; // Nombre total d'articles dans le panier
+            $totalItems = $row['total_items'];
         } else {
             $totalItems = 0;
         }
@@ -439,31 +420,24 @@ if (!isset($_SESSION['email'])) {
         ?>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const searchForm = document.getElementById('searchForm');
-                const productSections = document.querySelectorAll('.product-grid');
+                const searchForm = document.querySelector('form[action="produit1.php"]');
+                const productDetails = document.querySelectorAll('.product-details');
 
-                // Écouter l'événement de soumission du formulaire de recherche
                 searchForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Empêcher le rechargement de la page
+                    event.preventDefault();
 
-                    const searchText = document.getElementById('search').value.toLowerCase().trim();
+                    const searchTerm = document.querySelector('input[name="search"]').value.trim().toLowerCase();
 
-                    // Parcourir tous les produits et afficher ou masquer en fonction de la recherche
-                    productSections.forEach(function(section) {
-                        const products = section.querySelectorAll('.product-details');
-                        products.forEach(function(product) {
-                            const productName = product.querySelector('h4').innerText.toLowerCase();
-
-                            // Vérifier si le nom du produit correspond à la recherche
-                            const displayStyle = productName.includes(searchText) ? 'block' : 'none';
-                            product.style.display = displayStyle;
-                        });
+                    productDetails.forEach(function(product) {
+                        const productName = product.querySelector('h4').innerText.trim().toLowerCase();
+                        const displayStyle = productName.includes(searchTerm) ? 'block' : 'none';
+                        product.style.display = displayStyle;
                     });
                 });
             });
 
 
-            // JavaScript ici pour utiliser le résultat PHP, par exemple :
+
             var itemCount = <?php echo $totalItems; ?>;
             document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('nombreProduitsPanier').innerText = itemCount;
@@ -478,7 +452,7 @@ if (!isset($_SESSION['email'])) {
 
     </body>
 
-    </html><!-- La page affiche les produits avec un bouton "Ajouter au panier" pour chaque produit -->
+    </html>
 
 <?php
 }

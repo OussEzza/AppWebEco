@@ -36,7 +36,6 @@ if (!isset($_SESSION['email'])) {
                 if ($result && mysqli_num_rows($result) > 0) {
                     echo '<div class="divproduct1">';
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // Affichage des détails du produit
                         echo '<div class="divproduct">';
                         echo '<div class="divpanier">';
                         echo '<h4>' . $row['product_name'] . '</h4>';
@@ -49,7 +48,6 @@ if (!isset($_SESSION['email'])) {
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
-                        // Calcul du montant pour ce produit et ajout au total
                         $productPrice = $row['price'];
                         $productQuantity = $row['quantity'];
                         $productTotal = $productPrice * $productQuantity;
