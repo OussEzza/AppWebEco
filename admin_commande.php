@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
                 <a href="admin_produits.php">Produits</a>
                 <a href="admin_commande.php">Commandes</a>
                 <a href="admin_users.php">Utilisateurs</a>
-                <a href="admin_contacts.php">Messages</a>
+                <a href="admin_contact.php">Messages</a>
                 <a class="mobile-menu-button" href="javascript:void(0);" onclick="toggleNavbar()">&#9776;</a>
             </nav>
         </div>
