@@ -20,6 +20,7 @@ if (!isset($_SESSION['email'])) {
         <style>
             img{
                 width: 1600px;
+             
             }
         </style>
 
