@@ -212,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Update_order'])) {
                             <td><?php echo $fetch_orders['address']; ?></td>
                             <td><?php echo $fetch_orders['username']; ?></td>
                             <td><?php echo $fetch_orders['method_payment']; ?></td>
-                            <td><?php echo $fetch_orders['total_price']; ?>$</td>
+                            <td><?php echo $fetch_orders['total_price']; ?>MAD</td>
                             <td style="color:<?php echo ($fetch_orders['livraison_status'] == 'E----*n cours') ? 'red' : 'green'; ?>"><?php echo $fetch_orders['livraison_status']; ?></td>
                             <td>
                                 <?php

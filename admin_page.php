@@ -168,7 +168,7 @@
                     };
                 };
                 ?>
-                <h3><?php echo $total_completed; ?>$</h3>
+                <h3><?php echo $total_completed; ?>MAD</h3>
                 <p>Paiements effectués</p>
             </a>
 

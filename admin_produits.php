@@ -255,7 +255,7 @@
             echo '<tr>';
             echo '<td>' . $row['id'] . '</td>';
             echo '<td>' . $row['product_name'] . '</td>';
-            echo '<td>' . $row['price'] . '</td>';
+            echo '<td>' . $row['price'] . ' MAD </td>';
             echo '<td>' . $row['quantitate'] . '</td>';
             echo '<td>' . $row['description'] . '</td>';
             echo '<td><img src="photo/' . $row['product_image'] . '" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>';
