@@ -26,6 +26,7 @@ if (!isset($_SESSION['email'])) {
             .container-div {
                 font-size: 22px;
                 margin: 0;
+                margin-bottom: -60px;
                 padding: 0;
                 font-family: Arial, sans-serif;
                 
