@@ -28,11 +28,7 @@ if (!isset($_SESSION['email'])) {
                 margin: 0;
                 padding: 0;
                 font-family: Arial, sans-serif;
-                /* overflow-x: hidden; */
-                /* display: flex; */
-                /* flex-direction: column; */
-                /* min-height: 100vh; */
-                /* position: relative; */
+                
             }
 
             video {
