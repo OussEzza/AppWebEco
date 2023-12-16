@@ -12,10 +12,9 @@ This repository contains the source code for GamingPlanet, an interactive e-comm
 
 ## Technologies Used
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: PHP, [Database system used - MySQL]
-- Additional Libraries/Tools: [PHPMailer]
-
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** PHP, [Database system used - MySQL]
+- **Additional Libraries/Tools:** [PHPMailer]
 
 ## Contributing
 
