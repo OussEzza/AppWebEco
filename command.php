@@ -55,8 +55,8 @@ if (!isset($_SESSION['email'])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com'; 
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ezzahriraja@gmail.com'; 
-            $mail->Password   = 'rljdsyklshfeodap'; 
+            $mail->Username   = 'your_e-mail@gmail.com'; 
+            $mail->Password   = 'your_password'; 
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
 
@@ -129,8 +129,8 @@ if (!isset($_SESSION['email'])) {
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com'; 
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'ezzahriraja@gmail.com'; 
-                $mail->Password   = 'rljdsyklshfeodap'; 
+                $mail->Username   = 'your_e-mail@gmail.com'; 
+                $mail->Password   = 'your_password'; 
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port       = 465;
 
